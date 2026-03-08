@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Casa La Palma — Project Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--rust:#B85042;--dark:#1A0A05;--gold:#C9974A;--cream:#F8F3EC;--brown:#2C1810;--tan:#7B6654;--border:#E8D5B0;--green:#2E7D32}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Source Sans 3",sans-serif;background:var(--cream);color:var(--brown);min-height:100vh}
+.header{background:linear-gradient(135deg,#1A0A05 0%,#8B2500 55%,#B85042 100%);padding:22px 30px 18px}
+.htop{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px}
+.hlbl{font-size:10px;color:var(--gold);letter-spacing:.25em;text-transform:uppercase;margin-bottom:4px}
+.htitle{font-family:"Playfair Display",serif;font-size:28px;font-weight:900;color:#fff}
+.hsub{color:#D0B896;font-size:12px;margin-top:4px}
+.bwrap{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pill{background:rgba(255,255,255,.1);border-radius:8px;padding:7px 13px;text-align:center}
+.pill-lbl{font-size:9px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.pill-val{font-size:12px;color:#fff;font-weight:700}
+.lang-bar{background:#111;padding:7px 30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.lang-btn{border:2px solid;padding:5px 16px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700;font-family:"Source Sans 3",sans-serif;transition:all .2s}
+.lang-btn.en-active{background:var(--gold);color:#fff;border-color:var(--gold)}
+.lang-btn.es-active{background:#1565C0;color:#fff;border-color:#1565C0}
+.lang-btn.en-off{background:transparent;color:var(--gold);border-color:var(--gold)}
+.lang-btn.es-off{background:transparent;color:#90CAF9;border-color:#90CAF9}
+.ro-badge{background:#E8F5E9;border:1px solid #A5D6A7;border-radius:20px;padding:3px 12px;font-size:10px;color:#1B5E20;font-weight:700}
+.translating{background:#E3F2FD;border:1px solid #90CAF9;border-radius:6px;padding:8px 16px;font-size:11px;color:#01579B;margin:8px 26px;display:none;align-items:center;gap:8px}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid #90CAF9;border-top-color:#1565C0;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tabs{background:var(--dark);display:flex;overflow-x:auto;border-bottom:3px solid var(--rust)}
+.tabs::-webkit-scrollbar{height:3px}.tabs::-webkit-scrollbar-thumb{background:var(--rust)}
+.tab-btn{padding:12px 18px;background:transparent;color:var(--tan);border:none;border-bottom:3px solid transparent;font-family:"Source Sans 3",sans-serif;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s;margin-bottom:-3px;text-transform:uppercase;letter-spacing:.05em}
+.tab-btn.active{background:var(--rust);color:#fff;border-bottom:3px solid var(--gold)}
+.tab-btn:hover:not(.active){color:var(--gold)}
+.main{padding:22px 26px;max-width:1300px;margin:0 auto}
+.tc{display:none}.tc.active{display:block}
+.card{background:#fff;border-radius:12px;padding:22px;border:1px solid var(--border);margin-bottom:16px;position:relative}
+.ctitle{font-family:"Playfair Display",serif;font-size:15px;font-weight:700;color:var(--brown);margin-bottom:14px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.gst{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;margin-bottom:18px}
+.sc{background:#fff;border-radius:10px;padding:15px;border:1px solid var(--border)}
+.sval{font-family:"Playfair Display",serif;font-size:21px;font-weight:700}
+.slbl{font-size:10px;color:var(--tan);margin-top:3px;text-transform:uppercase;letter-spacing:.07em}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:7px 11px;text-align:left;font-size:10px;color:var(--tan);text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--border)}
+td{padding:8px 11px;border-bottom:1px solid var(--border)}
+tr:hover td{background:#FFFDF8}
+.thd th{background:var(--brown);color:#E8D5B0;border:none}
+.badge{display:inline-block;border-radius:99px;padding:2px 9px;font-size:10px;font-weight:700}
+.aalert{background:#FFF8E1;border:1px solid #FFD54F;border-radius:7px;padding:10px 14px;font-size:11px;color:#5D3A00;margin:8px 0}
+.ralert{background:#FFEBEE;border:2px solid var(--rust);border-radius:10px;padding:18px;font-size:12px;color:var(--brown);line-height:1.9}
+.galert{background:#E8F5E9;border:1px solid #A5D6A7;border-radius:8px;padding:9px 15px;font-size:11px;color:#1B5E20;margin-bottom:14px}
+.pb{background:#EEE;border-radius:99px;overflow:hidden}
+.pbf{border-radius:99px;transition:width .4s}
+.wfr{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+.wfl{font-size:12px;flex:0 0 200px;padding:3px 5px}
+.wfb{flex:1;background:#EEE;border-radius:99px;height:9px;overflow:hidden}
+.wfbf{height:9px;border-radius:99px}
+.wfv{font-family:"Playfair Display",serif;font-size:13px;font-weight:700;flex:0 0 90px;text-align:right}
+.gw{overflow-x:auto;padding-bottom:6px}
+.pbtns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}
+.pbtn{padding:7px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;font-family:"Source Sans 3",sans-serif;border:2px solid}
+.ccard{background:#fff;border-radius:12px;padding:20px;border:1px solid var(--border)}
+.cgr{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:11px 0}
+.cst{background:var(--cream);border-radius:7px;padding:9px 11px}
+.csl{font-size:9px;color:var(--tan);text-transform:uppercase;letter-spacing:.05em}
+.csv{font-family:"Playfair Display",serif;font-size:14px;font-weight:700;margin-top:2px}
+.nsc{background:#fff;border-radius:10px;padding:16px;border:1px solid var(--border);margin-bottom:10px}
+.footer{background:var(--dark);padding:11px 30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:24px}
+.phase-edit-row{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px dashed #eee;font-size:11px}
+@media(max-width:700px){.g2{grid-template-columns:1fr}.main{padding:14px 15px}.wfl{flex:0 0 120px;font-size:11px}}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-thumb{background:var(--rust);border-radius:3px}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="htop">
+    <div>
+      <div class="hlbl" id="hLabel">RC2 Consulting — Project Management Dashboard</div>
+      <h1 class="htitle" id="hTitle">Casa La Palma</h1>
+      <div class="hsub" id="hSub">La Palma, Provincia de Los Santos, Panama — Renovación 2026</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+      <div class="bwrap" id="bw"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LANGUAGE + READ-ONLY BAR -->
+<div class="lang-bar">
+  <button id="btn-en" class="lang-btn en-active" onclick="setLang('en')">🇺🇸 ENGLISH</button>
+  <button id="btn-es" class="lang-btn es-off" onclick="setLang('es')">🇵🇦 ESPAÑOL</button>
+  <span class="ro-badge" id="ro-badge">👁 VIEW ONLY</span>
+  <span style="font-size:10px;color:#555;margin-left:auto" id="last-updated"></span>
+</div>
+<div class="translating" id="translating-bar">
+  <div class="spin"></div>
+  <span id="trans-msg">Traduciendo al español con IA...</span>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="ST('overview',this)" data-en="Overview" data-es="Resumen">Overview</button>
+  <button class="tab-btn" onclick="ST('phases',this)" data-en="Phases &amp; Timeline" data-es="Fases y Cronograma">Phases &amp; Timeline</button>
+  <button class="tab-btn" onclick="ST('budget',this)" data-en="Budget" data-es="Presupuesto">Budget</button>
+  <button class="tab-btn" onclick="ST('contractors',this)" data-en="Contractors" data-es="Contratistas">Contractors</button>
+  <button class="tab-btn" onclick="ST('rooms',this)" data-en="Dimensions" data-es="Dimensiones">Dimensions</button>
+  <button class="tab-btn" onclick="ST('nextsteps',this)" data-en="Next Steps" data-es="Próximos Pasos">Next Steps</button>
+</div>
+
+<div class="main">
+  <div id="tab-overview" class="tc active"></div>
+  <div id="tab-phases" class="tc"></div>
+  <div id="tab-budget" class="tc"></div>
+  <div id="tab-contractors" class="tc"></div>
+  <div id="tab-rooms" class="tc"></div>
+  <div id="tab-nextsteps" class="tc"></div>
+</div>
+
+<div class="footer">
+  <span style="color:var(--tan);font-size:10px" id="fL">RC2 Consulting · Casa La Palma · v15 FINAL · 2026</span>
+  <span style="color:var(--gold);font-size:10px" id="fR">La Palma, Provincia de Los Santos, Panama · B/. = USD 1:1</span>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   LANGUAGE SYSTEM
+═══════════════════════════════════════════════════════ */
+var LANG = 'en';
+var TRANS_CACHE = null; // cached Spanish translation of D
+
+/* Hard-coded bilingual UI strings */
+var UI = {
+  en: {
+    roLabel: '👁 VIEW ONLY',
+    headerLabel: 'RC2 Consulting — Project Management Dashboard',
+    overview: 'Overview', phases: 'Phases & Timeline', budget: 'Budget',
+    contractors: 'Contractors', rooms: 'Dimensions', nextsteps: 'Next Steps',
+    keyMilestones: 'Key Milestones', budgetSnapshot: 'Budget Snapshot',
+    newDoors: 'New Doors v15 Plan', holidayAlerts: 'Panama Holiday + Season Alerts',
+    fullTimeline: 'Full Year 2026 Timeline', phaseDetail: 'Phase Detail',
+    taskCol: 'Task', statusCol: 'Status', contractorCol: 'Contractor',
+    budgetCol: 'Budget', paidCol: 'Paid', balanceCol: 'Balance', progressCol: 'Progress',
+    netConstruction: 'NET FOR CONSTRUCTION', complete: 'complete',
+    allSpaces: 'All Spaces — Floor Plan v15', zone: 'Zone', room: 'Room / Space',
+    depth: 'Depth', width: 'Width', sqft: 'Sq Ft', statusH: 'Status',
+    contractTotal: 'Contract Total', paidDate: 'Paid to Date', due70: 'Due @ 70%',
+    finalPay: 'Final Payment', urgentNow: 'URGENT NOW', thisMonth: 'THIS MONTH',
+    planning: 'PLANNING', criticalPath: 'CRITICAL PATH — Azuero Peninsula, Panama',
+    statusDone: 'done', statusActive: 'active', statusPending: 'pending',
+    statusPaid: 'PAID', statusActiveCo: 'ACTIVE', statusPendingCo: 'PENDING',
+    pctComplete: '% complete', budgetWaterfall: 'Budget Waterfall',
+    phaseBudget: 'Phase Budget vs Paid', regNotes: 'Panama Regulatory Notes',
+    withinBudget: 'Within budget ✓', exceedsBudget: 'Exceeds budget by B/.',
+    terrazaNote: 'Dimensions Note',
+  },
+  es: {
+    roLabel: '👁 SOLO LECTURA',
+    headerLabel: 'RC2 Consultoría — Tablero de Gestión de Proyecto',
+    overview: 'Resumen', phases: 'Fases y Cronograma', budget: 'Presupuesto',
+    contractors: 'Contratistas', rooms: 'Dimensiones', nextsteps: 'Próximos Pasos',
+    keyMilestones: 'Hitos Clave', budgetSnapshot: 'Resumen de Presupuesto',
+    newDoors: 'Nuevas Puertas — Plano v15', holidayAlerts: 'Alertas: Feriados y Temporadas Panamá',
+    fullTimeline: 'Cronograma Anual 2026', phaseDetail: 'Detalle de Fase',
+    taskCol: 'Tarea', statusCol: 'Estado', contractorCol: 'Contratista',
+    budgetCol: 'Presupuesto', paidCol: 'Pagado', balanceCol: 'Saldo', progressCol: 'Progreso',
+    netConstruction: 'NETO PARA CONSTRUCCIÓN', complete: 'completado',
+    allSpaces: 'Todos los Espacios — Plano v15', zone: 'Zona', room: 'Ambiente / Espacio',
+    depth: 'Fondo', width: 'Ancho', sqft: 'Pie²', statusH: 'Estado',
+    contractTotal: 'Total Contrato', paidDate: 'Pagado a la Fecha', due70: 'Vence al 70%',
+    finalPay: 'Pago Final', urgentNow: 'URGENTE AHORA', thisMonth: 'ESTE MES',
+    planning: 'PLANIFICACIÓN', criticalPath: 'RUTA CRÍTICA — Península de Azuero, Panamá',
+    statusDone: 'listo', statusActive: 'en progreso', statusPending: 'pendiente',
+    statusPaid: 'PAGADO', statusActiveCo: 'ACTIVO', statusPendingCo: 'PENDIENTE',
+    pctComplete: '% completado', budgetWaterfall: 'Flujo de Presupuesto',
+    phaseBudget: 'Presupuesto vs Pagado por Fase', regNotes: 'Notas Regulatorias Panamá',
+    withinBudget: 'Dentro del presupuesto ✓', exceedsBudget: 'Excede el presupuesto en B/.',
+    terrazaNote: 'Nota de Dimensiones',
+  }
+};
+
+/* ═══════════════════════════════════════════════════════
+   PROJECT DATA  (paste updated JSON from your backup here)
+═══════════════════════════════════════════════════════ */
+var MONTHS_EN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var MONTHS_ES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+
+var D={
+  header:{title:'Casa La Palma',sub:'La Palma, Provincia de Los Santos, Panama — Renovación 2026',label:'RC2 Consulting — Project Management Dashboard'},
+  footer:{left:'RC2 Consulting · Casa La Palma · v15 FINAL · 2026',right:'La Palma, Provincia de Los Santos, Panama · B/. = USD 1:1'},
+  badges:[{l:'Phase 1',v:'ACTIVE'},{l:'v15 Plan',v:'LOCKED'},{l:'3 Doors',v:'ADDED'}],
+  cfg:{TotalBudget:60000,PaidToDate:13485,Outstanding:3860,FutureSup:6975,Contingency:5000,NetConstruction:20680},
+  cfgL:{TotalBudget:'Total Budget',PaidToDate:'Paid to Date',Outstanding:'Outstanding Due',FutureSup:'Future Superintendent',Contingency:'Contingency Reserve',NetConstruction:'Net for Construction'},
+  cfgL_es:{TotalBudget:'Presupuesto Total',PaidToDate:'Pagado a la Fecha',Outstanding:'Monto Pendiente',FutureSup:'Superintendente Futuro',Contingency:'Reserva de Contingencia',NetConstruction:'Neto para Construcción'},
+  cfgC:{TotalBudget:'#00695C',PaidToDate:'#B85042',Outstanding:'#E65100',FutureSup:'#7B6654',Contingency:'#6A1B9A',NetConstruction:'#2E7D32'},
+  contractors:[
+    {name:'Creaciones Eduardo',scope:'Structural Restoration',scope_es:'Restauración Estructural',inv:'INV-001',status:'ACTIVE',total:4860,paid:2000,d70:1860,final:1000,notes:'Rebar + moisture work',notes_es:'Trabajo de varilla y humedad'},
+    {name:'Creaciones Eduardo',scope:'Wall Crack Repair',scope_es:'Reparación de Grietas en Paredes',inv:'INV-002',status:'ACTIVE',total:2260,paid:1260,d70:500,final:500,notes:'Exterior + interior cracks',notes_es:'Grietas exteriores e interiores'},
+    {name:'Servicios Batista',scope:'Zapatas + Structural Anchors',scope_es:'Zapatas + Anclajes Estructurales',inv:'INV-324',status:'PAID',total:4800,paid:4800,d70:0,final:0,notes:'Paid in full November 2025',notes_es:'Pagado en su totalidad noviembre 2025'},
+    {name:'Site Superintendent',scope_es:'Vivienda + Administración de Obra',scope:'Housing + Management',inv:'--',status:'ACTIVE',total:12400,paid:5425,d70:0,final:6975,notes:'$700/mo + $75 utilities',notes_es:'$700/mes + $75 servicios'}
+  ],
+  phases:[
+    {id:1,lbl:'Pre-Con A',lbl_es:'Pre-Obra A',title:'Planning + Design',title_es:'Planificación + Diseño',color:'#455A64',start:0,dur:1,budget:0,paid:0,warn:'January 2026 - Design finalization, contractor sourcing, permit research',warn_es:'Enero 2026 - Finalización de diseño, búsqueda de contratistas, investigación de permisos'},
+    {id:2,lbl:'Pre-Con B',lbl_es:'Pre-Obra B',title:'Permitting + Procurement',title_es:'Permisos + Adquisiciones',color:'#607D8B',start:1,dur:1,budget:2000,paid:0,warn:'February 2026 - MIVIOT/MOP filings, material orders, engineer sign-offs',warn_es:'Febrero 2026 - Trámites MIVIOT/MOP, pedidos de materiales, aprobación del ingeniero'},
+    {id:3,lbl:'Phase 1',lbl_es:'Fase 1',title:'Structural Safety',title_es:'Seguridad Estructural',color:'#B85042',start:2,dur:2,budget:15920,paid:10060,warn:'Complete before Azuero lluvia season May 2026 - Semana Santa April = labor pause',warn_es:'Completar antes de la lluvia de Azuero mayo 2026 - Semana Santa abril = paro laboral'},
+    {id:4,lbl:'Phase 2',lbl_es:'Fase 2',title:'Interior Demo + Reconfig',title_es:'Demolición Interior + Reconfiguración',color:'#C9974A',start:4,dur:4,budget:17200,paid:0,warn:'Source materials before rainy season',warn_es:'Conseguir materiales antes de la temporada de lluvias'},
+    {id:5,lbl:'Phase 3',lbl_es:'Fase 3',title:'Interior Remodel',title_es:'Remodelación Interior',color:'#01579B',start:8,dur:3,budget:15100,paid:0,warn:'',warn_es:''},
+    {id:6,lbl:'Phase 4',lbl_es:'Fase 4',title:'Exterior + Utilities',title_es:'Exterior + Instalaciones',color:'#00695C',start:5,dur:5,budget:5400,paid:0,warn:'MINSA approval required before septic work',warn_es:'Se requiere aprobación MINSA antes del trabajo de fosa séptica'},
+    {id:7,lbl:'Phase 5',lbl_es:'Fase 5',title:'Storage + Structures',title_es:'Depósito + Estructuras',color:'#6A1B9A',start:10,dur:2,budget:6000,paid:0,warn:'',warn_es:''}
+  ],
+  tasks:[
+    {pid:1,name:'Floor plan finalization v15',name_es:'Finalización de plano v15',status:'complete',cost:0,paid:0,who:'Owner',progress:100},
+    {pid:1,name:'Contractor sourcing + quotes',name_es:'Búsqueda de contratistas + cotizaciones',status:'complete',cost:0,paid:0,who:'Superintendent',progress:100},
+    {pid:1,name:'Structural engineer assessment',name_es:'Evaluación de ingeniero estructural',status:'complete',cost:0,paid:0,who:'Engineer',progress:100},
+    {pid:2,name:'MIVIOT + MOP permit applications',name_es:'Solicitudes de permiso MIVIOT + MOP',status:'active',cost:800,paid:0,who:'Owner',progress:30},
+    {pid:2,name:'Colonial tile sourcing - Chitre',name_es:'Búsqueda de teja colonial - Chitré',status:'active',cost:200,paid:0,who:'Superintendent',progress:20},
+    {pid:2,name:'Teca/Roble timber orders',name_es:'Pedidos de madera Teca/Roble',status:'pending',cost:1000,paid:0,who:'TBD',progress:0},
+    {pid:3,name:'Rear patio roof demo + rebuild pitched',name_es:'Demo + reconstrucción de techo patio trasero (a dos aguas)',status:'active',cost:4800,paid:4800,who:'Batista',progress:100},
+    {pid:3,name:'House roof repairs + colonial tile',name_es:'Reparación de techo + teja colonial',status:'active',cost:2800,paid:2000,who:'Eduardo',progress:71},
+    {pid:3,name:'Rebar replacement + crack repair',name_es:'Cambio de varilla + reparación de grietas',status:'active',cost:2260,paid:1260,who:'Eduardo',progress:41},
+    {pid:3,name:'Structural restoration',name_es:'Restauración estructural',status:'active',cost:4860,paid:2000,who:'Eduardo',progress:40},
+    {pid:3,name:'Exterior waterproofing - alley + walls',name_es:'Impermeabilización exterior - callejón + paredes',status:'pending',cost:800,paid:0,who:'TBD',progress:0},
+    {pid:3,name:'Bathroom + laundry roof pitch raise',name_es:'Elevación de techo de baño y lavandería',status:'pending',cost:1200,paid:0,who:'TBD',progress:0},
+    {pid:4,name:'Remove existing staircase',name_es:'Demolición de escalera existente',status:'pending',cost:800,paid:0,who:'',progress:0},
+    {pid:4,name:'Build Closet 1 + Closet 2',name_es:'Construcción de Closet 1 + Closet 2',status:'pending',cost:1200,paid:0,who:'',progress:0},
+    {pid:4,name:'Demo kitchen wall - load path check first',name_es:'Demoler pared de cocina - verificar carga estructural primero',status:'pending',cost:600,paid:0,who:'',progress:0},
+    {pid:4,name:'Demo kitchen ceiling + 2nd floor slab',name_es:'Demoler cielo raso de cocina + losa de 2do piso',status:'pending',cost:2500,paid:0,who:'',progress:0},
+    {pid:4,name:'BUILD Bedroom 3 - new west wall',name_es:'CONSTRUIR Cuarto 3 - nueva pared oeste',status:'pending',cost:1200,paid:0,who:'',progress:0},
+    {pid:4,name:'Raise loft to 8-9 ft',name_es:'Elevar loft a 8-9 pies',status:'pending',cost:5500,paid:0,who:'',progress:0},
+    {pid:4,name:'Wooden railing Teca/Roble',name_es:'Baranda de madera Teca/Roble',status:'pending',cost:1800,paid:0,who:'',progress:0},
+    {pid:4,name:'New compact feature staircase',name_es:'Nueva escalera compacta de diseño',status:'pending',cost:2200,paid:0,who:'',progress:0},
+    {pid:4,name:'New 2nd floor windows post-raise',name_es:'Nuevas ventanas de 2do piso post-elevación',status:'pending',cost:1400,paid:0,who:'',progress:0},
+    {pid:5,name:'Raise all ground-floor window openings',name_es:'Elevar todas las ventanas de planta baja',status:'pending',cost:2200,paid:0,who:'',progress:0},
+    {pid:5,name:'New floor tiles throughout',name_es:'Nuevo piso de cerámica en toda la casa',status:'pending',cost:3500,paid:0,who:'',progress:0},
+    {pid:5,name:'Burglar bars throughout',name_es:'Rejas de seguridad en toda la casa',status:'pending',cost:1200,paid:0,who:'',progress:0},
+    {pid:5,name:'Front steps + rampa accesibilidad Ley 42',name_es:'Gradas frontales + rampa de accesibilidad Ley 42',status:'pending',cost:1800,paid:0,who:'',progress:0},
+    {pid:5,name:'Kitchen to terraza step-down fix',name_es:'Corrección de desnivel cocina-terraza',status:'pending',cost:400,paid:0,who:'',progress:0},
+    {pid:5,name:'Kitchen cabinets + countertops',name_es:'Gabinetes de cocina + encimeras',status:'pending',cost:3200,paid:0,who:'',progress:0},
+    {pid:5,name:'Bathroom interior remodel + fixtures',name_es:'Remodelación interior de baño + accesorios',status:'pending',cost:2800,paid:0,who:'',progress:0},
+    {pid:6,name:'Septic relocation - MINSA approval required',name_es:'Reubicación de fosa séptica - requiere aprobación MINSA',status:'pending',cost:2500,paid:0,who:'',progress:0},
+    {pid:6,name:'Courtyard layout + landscaping',name_es:'Diseño de patio + jardinería',status:'pending',cost:1200,paid:0,who:'',progress:0},
+    {pid:6,name:'Outhouse removal + laundry reconfig',name_es:'Demolición de letrina + reconfiguración de lavandería',status:'pending',cost:800,paid:0,who:'',progress:0},
+    {pid:6,name:'Backup water tank assessment',name_es:'Evaluación de tanque de agua de reserva',status:'pending',cost:300,paid:0,who:'',progress:0},
+    {pid:6,name:'Bathroom windows + exterior remodel',name_es:'Ventanas de baño + remodelación exterior',status:'pending',cost:600,paid:0,who:'',progress:0},
+    {pid:7,name:'Repair / remodel deposito',name_es:'Reparación / remodelación del depósito',status:'pending',cost:1500,paid:0,who:'',progress:0},
+    {pid:7,name:'Remodel Mama Zoila house',name_es:'Remodelación casa Mamá Zoila',status:'pending',cost:4000,paid:0,who:'',progress:0},
+    {pid:7,name:'Canasa property assessment',name_es:'Evaluación de propiedad Canasa',status:'pending',cost:500,paid:0,who:'',progress:0}
+  ],
+  milestones:[
+    {status:'done',date:'Oct 2025',desc:'Structural assessments - no major damage found',desc_es:'Evaluaciones estructurales - sin daños mayores'},
+    {status:'done',date:'Nov 2025',desc:'Zapatas + anchors - Batista paid in full B/. 4,800',desc_es:'Zapatas + anclajes - Batista pagado en su totalidad B/. 4,800'},
+    {status:'done',date:'Jan 2026',desc:'Floor plan v15 design finalization',desc_es:'Finalización del diseño de plano v15'},
+    {status:'done',date:'Mar 2026',desc:'v15 LOCKED - 3 new doors confirmed',desc_es:'v15 BLOQUEADO - 3 nuevas puertas confirmadas'},
+    {status:'active',date:'Mar 2026',desc:'Rear patio roof demo + rebuild - ACTIVE NOW',desc_es:'Demo + reconstrucción de techo trasero - EN PROGRESO'},
+    {status:'pending',date:'Apr 2026',desc:'All exterior work done before Azuero lluvia season',desc_es:'Todo el trabajo exterior terminado antes de la lluvia de Azuero'},
+    {status:'pending',date:'May 2026',desc:'Phase 2: Bedroom 3 wall - 3 doors - Demo - Loft raise',desc_es:'Fase 2: Pared Cuarto 3 - 3 puertas - Demolición - Elevación de loft'},
+    {status:'pending',date:'Dec 2026',desc:'Project substantial completion',desc_es:'Terminación sustancial del proyecto'}
+  ],
+  wfLabels:['Total Budget','Paid to Date','Outstanding','Future Superintendent','Contingency'],
+  wfLabels_es:['Presupuesto Total','Pagado a la Fecha','Pendiente de Cobro','Superintendente Futuro','Contingencia'],
+  wfKeys:['TotalBudget','PaidToDate','Outstanding','FutureSup','Contingency'],
+  wfColors:['#00695C','#B85042','#E65100','#7B6654','#6A1B9A'],
+  nextsteps:[
+    {cat:'URGENT NOW',cat_es:'URGENTE AHORA',color:'#C62828',bg:'#FFEBEE',border:'#C62828',items:[
+      {title:'Redirect AC drain',title_es:'Redirigir drenaje del AC',desc:'Rubber extension away from crack repair zone - approx B/. 5',desc_es:'Extensión de caucho alejada de la zona reparada - aprox. B/. 5',timing:'This week',timing_es:'Esta semana'},
+      {title:'Eduardo 70% payments',title_es:'Pagos al 70% a Eduardo',desc:'B/. 1,860 INV-001 + B/. 500 INV-002 at milestone',desc_es:'B/. 1,860 INV-001 + B/. 500 INV-002 al alcanzar el hito',timing:'When triggered',timing_es:'Al alcanzar hito'},
+      {title:'Complete exterior waterproofing',title_es:'Terminar impermeabilización exterior',desc:'Azuero lluvia May. Semana Santa April = labor pause',desc_es:'Lluvia de Azuero mayo. Semana Santa abril = paro laboral',timing:'Before Apr 2026',timing_es:'Antes de abr 2026'}
+    ]},
+    {cat:'THIS MONTH',cat_es:'ESTE MES',color:'#E65100',bg:'#FFF8E1',border:'#E65100',items:[
+      {title:'Colonial tile quotes',title_es:'Cotizaciones de teja colonial',desc:'Chitre / La Palma suppliers - match existing roof tile',desc_es:'Proveedores en Chitré / La Palma - igualar teja existente',timing:'Mar 2026',timing_es:'Mar 2026'},
+      {title:'Structural engineer sign-off',title_es:'Aprobación de ingeniero estructural',desc:'2nd floor beam sizing before Phase 2 begins',desc_es:'Dimensionamiento de vigas de 2do piso antes de iniciar Fase 2',timing:'Mar 2026',timing_es:'Mar 2026'},
+      {title:'Permisos de construccion',title_es:'Permisos de construcción',desc:'MIVIOT + MOP Panama - file before Phase 2 demo',desc_es:'MIVIOT + MOP Panamá - tramitar antes de demo de Fase 2',timing:'Mar-Apr 2026',timing_es:'Mar-Abr 2026'}
+    ]},
+    {cat:'PLANNING',cat_es:'PLANIFICACIÓN',color:'#00695C',bg:'#E0F2F1',border:'#00695C',items:[
+      {title:'Loft railing + staircase design',title_es:'Diseño de baranda del loft + escalera',desc:'Structural review before Phase 2 begins in May',desc_es:'Revisión estructural antes de iniciar Fase 2 en mayo',timing:'Apr-May 2026',timing_es:'Abr-May 2026'},
+      {title:'Bed3 west wall + 3 doors',title_es:'Pared oeste Cuarto 3 + 3 puertas',desc:'Source materials Chitre / Santiago de Veraguas',desc_es:'Conseguir materiales en Chitré / Santiago de Veraguas',timing:'May 2026',timing_es:'May 2026'},
+      {title:'MINSA septic assessment',title_es:'Evaluación séptica MINSA',desc:'Required before Phase 4 septic relocation work',desc_es:'Requerida antes del trabajo de reubicación séptica Fase 4',timing:'Jun 2026',timing_es:'Jun 2026'}
+    ]}
+  ],
+  doors:[
+    {color:'#B85042',title:'Door A - Bathroom South Wall',title_es:'Puerta A - Pared Sur del Baño',desc:'Centered - 3ft wide - swings north into bathroom',desc_es:'Centrada - 3 pies de ancho - abre hacia el norte'},
+    {color:'#C9974A',title:'Door B - Bedroom 3 West Wall',title_es:'Puerta B - Pared Oeste Cuarto 3',desc:'Just south of closet - 3ft wide - swings east into Bed3',desc_es:'Al sur del closet - 3 pies de ancho - abre hacia el este'},
+    {color:'#6A1B9A',title:'Door C - Lavanderia West Wall',title_es:'Puerta C - Pared Oeste Lavandería',desc:'From courtyard - 3ft wide - swings east into laundry',desc_es:'Desde el patio - 3 pies de ancho - abre hacia el este'}
+  ],
+  holidays:[
+    {icon:'🌧',title:'Azuero lluvia season',title_es:'Temporada de lluvia de Azuero',desc:'Begins May 2026 - ALL exterior work must complete before this',desc_es:'Inicia mayo 2026 - TODO el trabajo exterior debe terminar antes'},
+    {icon:'✝',title:'Semana Santa Holy Week',title_es:'Semana Santa',desc:'April 2026 - full labor pause - coordinate with Eduardo now',desc_es:'Abril 2026 - paro total de obra - coordinar con Eduardo ya'},
+    {icon:'🎉',title:'Carnaval',title_es:'Carnaval',desc:'Feb/Mar 2026 - Los Santos major celebration - reduced workers',desc_es:'Feb/Mar 2026 - festividades principales en Los Santos - menos trabajadores'},
+    {icon:'🏛',title:'November holidays cluster',title_es:'Feriados de noviembre',desc:'Nov 1-28 multiple national holidays - plan phases accordingly',desc_es:'Nov 1-28 múltiples feriados nacionales - planificar fases en consecuencia'}
+  ],
+  regNotes:[
+    {title:'Currency',title_es:'Moneda',desc:'Balboa B/. = USD 1:1 - No exchange risk',desc_es:'Balboa B/. = USD 1:1 - Sin riesgo cambiario'},
+    {title:'Permits',title_es:'Permisos',desc:'MIVIOT + MOP - File before Phase 2 demolition',desc_es:'MIVIOT + MOP - Tramitar antes de demolición Fase 2'},
+    {title:'Septic',title_es:'Séptico',desc:'MINSA Ingenieria Sanitaria approval required',desc_es:'Se requiere aprobación de MINSA Ingeniería Sanitaria'},
+    {title:'Accessibility',title_es:'Accesibilidad',desc:'Ley 42 de 1999 - Accessibility ramp required',desc_es:'Ley 42 de 1999 - Se requiere rampa de accesibilidad'},
+    {title:'Timber',title_es:'Madera',desc:'Teca + Roble - source from Chitre / Azuero',desc_es:'Teca + Roble - conseguir en Chitré / Azuero'},
+    {title:'Tiles',title_es:'Cerámica',desc:'Order from Chitre before May rainy season',desc_es:'Pedir en Chitré antes de la temporada de lluvias en mayo'},
+    {title:'Labor Law',title_es:'Derecho Laboral',desc:'Codigo de Trabajo Panama Decreto Ley No. 5 de 2015',desc_es:'Código de Trabajo Panamá Decreto Ley No. 5 de 2015'},
+    {title:'Construction',title_es:'Construcción',desc:'Mamposteria concrete block - standard in Los Santos',desc_es:'Mampostería de bloque de concreto - estándar en Los Santos'}
+  ],
+  rooms:[
+    {zone:'House N',zone_es:'Casa Norte',name:'Bedroom 1',name_es:'Habitación 1',depth:'11.81ft',width:'12.14ft',sqft:'143.4',status:'Existing',status_es:'Existente'},
+    {zone:'House N',zone_es:'Casa Norte',name:'Closet 1',name_es:'Closet 1',depth:'2.23ft',width:'12.14ft',sqft:'27.1',status:'Renovation',status_es:'Remodelación'},
+    {zone:'House N',zone_es:'Casa Norte',name:'Closet 2',name_es:'Closet 2',depth:'2.23ft',width:'12.14ft',sqft:'27.1',status:'Renovation',status_es:'Remodelación'},
+    {zone:'House N',zone_es:'Casa Norte',name:'Bedroom 2',name_es:'Habitación 2',depth:'13.35ft',width:'12.14ft',sqft:'162.1',status:'Renovation',status_es:'Remodelación'},
+    {zone:'House S',zone_es:'Casa Sur',name:'Living Room',name_es:'Sala',depth:'16.17ft',width:'11.54ft',sqft:'186.6',status:'Existing',status_es:'Existente'},
+    {zone:'House S',zone_es:'Casa Sur',name:'Kitchen',name_es:'Cocina',depth:'13.45ft',width:'11.54ft',sqft:'155.2',status:'Existing',status_es:'Existente'},
+    {zone:'Exterior',zone_es:'Exterior',name:'Front Porch',name_es:'Portal Frontal',depth:'4ft 6in',width:'23.68ft',sqft:'106.6',status:'Existing',status_es:'Existente'},
+    {zone:'Terraza N',zone_es:'Terraza Norte',name:'Bathroom LOCKED',name_es:'Baño BLOQUEADO',depth:'9ft 0in',width:'9ft 3in',sqft:'83.3',status:'Locked',status_es:'Bloqueado'},
+    {zone:'Terraza N',zone_es:'Terraza Norte',name:'Yard / Courtyard LOCKED',name_es:'Patio / Jardín BLOQUEADO',depth:'21.8ft',width:'9ft 3in',sqft:'201.7',status:'Locked',status_es:'Bloqueado'},
+    {zone:'Terraza N',zone_es:'Terraza Norte',name:'Lavanderia LOCKED',name_es:'Lavandería BLOQUEADA',depth:'12ft 0in',width:'9ft 3in',sqft:'111.0',status:'Locked',status_es:'Bloqueado'},
+    {zone:'Terraza S',zone_es:'Terraza Sur',name:'Open Terraza',name_es:'Terraza Abierta',depth:'31ft 10in',width:'14ft 7in',sqft:'464.5',status:'Active',status_es:'Activo'},
+    {zone:'Terraza S',zone_es:'Terraza Sur',name:'Bedroom 3 NEW',name_es:'Cuarto 3 NUEVO',depth:'10ft 10in',width:'14ft 7in',sqft:'158.2',status:'New',status_es:'Nuevo'}
+  ],
+  rtotals:{house:'701',terraza:'1,019',porch:'107',grand:'1,827'},
+  tnote:'TERRAZA LOCKED: All terraza dimensions are existing installed - zero renovation required on these elements.',
+  tnote_es:'TERRAZA BLOQUEADA: Todas las dimensiones de la terraza están instaladas - no se requiere remodelación en estos elementos.',
+  cp:'All Phase 1 structural, roof and waterproofing work MUST complete before Azuero rainy season - May 2026.\n- Semana Santa April 2026 = full labor pause. Coordinate with Eduardo now.\n- Supply chain: Order colonial tiles, Teca/Roble from Chitre before May.\n- Permisos: MIVIOT + MOP applications filed before Phase 2 demolition begins.\n- MINSA approval required before any septic tank relocation work - Phase 4.',
+  cp_es:'Todo el trabajo estructural, de techo e impermeabilización de la Fase 1 DEBE completarse antes de la temporada de lluvias de Azuero - mayo 2026.\n- Semana Santa abril 2026 = paro total de obra. Coordinar con Eduardo ya.\n- Cadena de suministro: Pedir tejas coloniales, Teca/Roble en Chitré antes de mayo.\n- Permisos: Solicitudes MIVIOT + MOP antes de demolición Fase 2.\n- Aprobación MINSA requerida antes de cualquier reubicación de fosa séptica - Fase 4.'
+};
+
+/* ═══════════════════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════════════════ */
+var SPH=3;
+function nv(v){return parseFloat(String(v||0).replace(/[^0-9.-]/g,''))||0;}
+function fm(v){return 'B/. '+nv(v).toLocaleString();}
+function pc(p,t){return t>0?Math.min(100,Math.round(nv(p)/nv(t)*100)):0;}
+function u(k){return UI[LANG][k]||UI.en[k]||k;}
+function MONTHS(){return LANG==='es'?MONTHS_ES:MONTHS_EN;}
+
+function ST(id,btn){
+  document.querySelectorAll('.tc').forEach(function(el){el.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(function(el){el.classList.remove('active');});
+  document.getElementById('tab-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+}
+
+function setLang(lang){
+  LANG=lang;
+  var enBtn=document.getElementById('btn-en');
+  var esBtn=document.getElementById('btn-es');
+  enBtn.className='lang-btn '+(lang==='en'?'en-active':'en-off');
+  esBtn.className='lang-btn '+(lang==='es'?'es-active':'es-off');
+  document.getElementById('ro-badge').textContent=u('roLabel');
+  // Update tab labels
+  document.querySelectorAll('.tab-btn').forEach(function(b){
+    var t=b.getAttribute('data-'+lang);
+    if(t)b.innerHTML=t;
+  });
+  RA();
+}
+
+/* ═══════════════════════════════════════════════════════
+   RENDER ALL
+═══════════════════════════════════════════════════════ */
+function RA(){RBG();RO();RBD();RCO();RRM();RNS();RPH();}
+
+/* BADGES */
+function RBG(){
+  var w=document.getElementById('bw');if(!w)return;w.innerHTML='';
+  D.badges.forEach(function(b){
+    var p=document.createElement('div');p.className='pill';
+    p.innerHTML='<div class="pill-lbl">'+b.l+'</div><div class="pill-val">'+b.v+'</div>';
+    w.appendChild(p);
+  });
+}
+
+/* ── OVERVIEW ─────────────────────────────────────── */
+function RO(){
+  var cfg=D.cfg,total=nv(cfg.TotalBudget)||60000;
+  var cfgL=LANG==='es'?D.cfgL_es:D.cfgL;
+  var stats=Object.keys(cfg).map(function(k){
+    var c=D.cfgC[k]||'#888',l=cfgL[k]||k;
+    return '<div class="sc" style="border-top:4px solid '+c+'">' +
+      '<div class="sval" style="color:'+c+'">B/. '+nv(cfg[k]).toLocaleString()+'</div>' +
+      '<div class="slbl">'+l+'</div></div>';
+  }).join('');
+
+  var mIco={done:'✓',active:'↻',pending:'⌛'};
+  var mStatusLabel={done:u('statusDone'),active:u('statusActive'),pending:u('statusPending')};
+  var mls=D.milestones.map(function(m){
+    var mc={done:{bg:'#E8F5E9',fg:'#2E7D32'},active:{bg:'#FFF3E0',fg:'#E65100'},pending:{bg:'#F5F5F5',fg:'#7B6654'}}[m.status]||{bg:'#F5F5F5',fg:'#7B6654'};
+    var desc=LANG==='es'?(m.desc_es||m.desc):m.desc;
+    return '<tr><td style="font-size:13px;width:22px">'+mIco[m.status]+'</td>' +
+      '<td style="color:var(--gold);font-size:10px;font-weight:700;width:68px">'+m.date+'</td>' +
+      '<td style="font-size:11px;'+(m.status==='active'?'font-weight:700;color:var(--rust)':'')+'">'+desc+'</td>' +
+      '<td><span class="badge" style="background:'+mc.bg+';color:'+mc.fg+'">'+mStatusLabel[m.status]+'</span></td></tr>';
+  }).join('');
+
+  var wfLabels=LANG==='es'?D.wfLabels_es:D.wfLabels;
+  var wfRows=D.wfKeys.map(function(k,i){
+    var l=wfLabels[i],c=D.wfColors[i],v=nv(cfg[k]),p=Math.round(v/total*100);
+    var s=i===0?'':'-';
+    return '<div class="wfr">' +
+      '<div class="wfl">'+l+'</div>' +
+      '<div class="wfb"><div class="wfbf" style="width:'+Math.min(p,100)+'%;background:'+c+'"></div></div>' +
+      '<div class="wfv" style="color:'+c+'">'+s+'B/.'+v.toLocaleString()+'</div></div>';
+  }).join('');
+
+  var doors=D.doors.map(function(d){
+    var title=LANG==='es'?(d.title_es||d.title):d.title;
+    var desc=LANG==='es'?(d.desc_es||d.desc):d.desc;
+    return '<div style="display:flex;gap:10px;margin-bottom:13px;align-items:flex-start">' +
+      '<div style="width:11px;height:11px;border-radius:50%;background:'+d.color+';flex-shrink:0;margin-top:3px"></div>' +
+      '<div><div style="font-weight:700;font-size:12px">'+title+'</div>' +
+      '<div style="font-size:11px;color:var(--tan);line-height:1.5;margin-top:2px">'+desc+'</div></div></div>';
+  }).join('');
+
+  var hols=D.holidays.map(function(h){
+    var title=LANG==='es'?(h.title_es||h.title):h.title;
+    var desc=LANG==='es'?(h.desc_es||h.desc):h.desc;
+    return '<div style="display:flex;gap:10px;margin-bottom:12px;align-items:flex-start">' +
+      '<span style="font-size:18px;flex-shrink:0">'+h.icon+'</span>' +
+      '<div><div style="font-weight:700;font-size:12px">'+title+'</div>' +
+      '<div style="font-size:11px;color:var(--tan);line-height:1.5;margin-top:2px">'+desc+'</div></div></div>';
+  }).join('');
+
+  document.getElementById('tab-overview').innerHTML=
+    '<div class="gst">'+stats+'</div>' +
+    '<div class="g2">' +
+    '<div class="card"><div class="ctitle">'+u('keyMilestones')+'</div>' +
+    '<table><tbody>'+mls+'</tbody></table></div>' +
+    '<div class="card"><div class="ctitle">'+u('budgetSnapshot')+'</div>' +
+    wfRows +
+    '<div style="border-top:2px solid #2E7D32;padding-top:12px;margin-top:4px;display:flex;justify-content:space-between;align-items:center">' +
+    '<div style="font-weight:700;font-size:13px">'+u('netConstruction')+'</div>' +
+    '<div style="font-family:\'Playfair Display\',serif;font-size:23px;font-weight:700;color:#2E7D32">B/. '+nv(cfg.NetConstruction).toLocaleString()+'</div></div></div></div>' +
+    '<div class="g2">' +
+    '<div class="card"><div class="ctitle">'+u('newDoors')+'</div>'+doors+'</div>' +
+    '<div class="card" style="border-color:#FFD54F"><div class="ctitle">'+u('holidayAlerts')+'</div>'+hols+'</div></div>';
+}
+
+/* ── PHASES ───────────────────────────────────────── */
+function RPH(){
+  var MN=MONTHS();
+  var ganttHTML='<div style="position:relative;padding-bottom:24px">';
+  ganttHTML+='<div style="display:flex;margin-left:145px;margin-bottom:2px">';
+  MN.forEach(function(m){
+    ganttHTML+='<div style="flex:1;text-align:center;font-size:10px;color:var(--tan);font-weight:600;padding-bottom:5px;border-bottom:1px solid var(--border)">'+m+'</div>';
+  });
+  ganttHTML+='</div>';
+  ganttHTML+='<div style="position:relative;margin-top:4px">';
+  ganttHTML+='<div style="position:absolute;top:0;left:145px;right:0;bottom:0;display:flex;pointer-events:none">';
+  MN.forEach(function(m,mi){
+    ganttHTML+='<div style="flex:1;border-right:'+(mi<11?'1px solid #f0eeea':'none')+'"></div>';
+  });
+  ganttHTML+='</div>';
+  ganttHTML+='<div style="position:absolute;top:0;bottom:0;left:calc(145px + '+(2/12*100).toFixed(4)+'%);width:2px;background:var(--rust);z-index:6;pointer-events:none">' +
+    '<span style="position:absolute;bottom:-20px;left:-14px;font-size:10px;color:var(--rust);font-weight:700;white-space:nowrap">'+(LANG==='es'?'HOY':'TODAY')+'</span></div>';
+
+  D.phases.forEach(function(ph){
+    var isSel=ph.id===SPH;
+    var lbl=LANG==='es'?(ph.lbl_es||ph.lbl):ph.lbl;
+    var title=LANG==='es'?(ph.title_es||ph.title):ph.title;
+    var leftPct=(nv(ph.start)/12*100).toFixed(4);
+    var widPct=(nv(ph.dur)/12*100).toFixed(4);
+    ganttHTML+='<div style="display:flex;align-items:center;min-height:38px;border-bottom:1px solid #f5f3f0;cursor:pointer" onclick="SPsel('+ph.id+')">';
+    ganttHTML+='<div style="width:145px;flex-shrink:0;padding-right:8px">' +
+      '<div style="font-size:10px;font-weight:'+(isSel?'700':'400')+';color:'+(isSel?ph.color:'var(--tan)')+'">'+lbl+'</div>' +
+      '<div style="font-size:9px;color:var(--tan)">'+title+'</div></div>';
+    ganttHTML+='<div style="flex:1;position:relative;height:38px;display:flex;align-items:center">';
+    ganttHTML+='<div style="position:absolute;left:'+leftPct+'%;width:'+widPct+'%;height:26px;background:'+ph.color+';border-radius:4px;box-shadow:0 1px 5px rgba(0,0,0,.2);'+(isSel?'outline:2px solid var(--gold);outline-offset:1px;':'')+'cursor:pointer" title="'+lbl+': '+title+'"></div>';
+    ganttHTML+='</div></div>';
+  });
+  ganttHTML+='</div></div>';
+
+  var phBtns=D.phases.map(function(ph){
+    var isSel=ph.id===SPH;
+    var lbl=LANG==='es'?(ph.lbl_es||ph.lbl):ph.lbl;
+    var title=LANG==='es'?(ph.title_es||ph.title):ph.title;
+    return '<button class="pbtn" style="border-color:'+ph.color+';background:'+(isSel?ph.color:'transparent')+';color:'+(isSel?'#fff':ph.color)+'" onclick="SPsel('+ph.id+')">'+lbl+': '+title+'</button>';
+  }).join('');
+
+  var ph=D.phases.find(function(p){return p.id===SPH;})||D.phases[0];
+  var p=pc(ph.paid,ph.budget);
+  var tasks=D.tasks.filter(function(t){return t.pid===SPH;});
+  var phLbl=LANG==='es'?(ph.lbl_es||ph.lbl):ph.lbl;
+  var phTitle=LANG==='es'?(ph.title_es||ph.title):ph.title;
+  var phWarn=LANG==='es'?(ph.warn_es||ph.warn):ph.warn;
+
+  var taskRows=tasks.map(function(t){
+    var tp=t.status==='complete'?100:t.status==='pending'?0:(t.progress!=null?t.progress:pc(t.paid,t.cost));
+    var sBg={pending:'#F5F5F5',active:'#FFF3E0',complete:'#E8F5E9'}[t.status]||'#F5F5F5';
+    var sFg={pending:'#7B6654',active:'#E65100',complete:'#2E7D32'}[t.status]||'#7B6654';
+    var ico={pending:'⌛',active:'↻',complete:'✓'}[t.status]||'⌛';
+    var sLabel={pending:u('statusPending'),active:u('statusActive'),complete:u('statusDone')}[t.status]||t.status;
+    var tname=LANG==='es'?(t.name_es||t.name):t.name;
+    var bal=nv(t.cost)-nv(t.paid);
+    return '<tr style="background:'+sBg+'22">' +
+      '<td style="font-size:13px;width:22px">'+ico+'</td>' +
+      '<td>'+tname+'</td>' +
+      '<td><span class="badge" style="background:'+sBg+';color:'+sFg+'">'+sLabel+'</span></td>' +
+      '<td>'+(t.who||'--')+'</td>' +
+      '<td style="font-weight:600">'+fm(t.cost)+'</td>' +
+      '<td style="color:'+(nv(t.paid)>0?'#2E7D32':'var(--tan)')+'">'+fm(t.paid)+'</td>' +
+      '<td style="color:'+(bal>0?'#E65100':'#2E7D32')+'">'+fm(bal)+'</td>' +
+      '<td style="min-width:90px"><div class="pb" style="height:7px"><div class="pbf" style="width:'+tp+'%;background:'+(t.status==='complete'?'#2E7D32':ph.color)+';height:7px"></div></div>' +
+      '<div style="font-size:9px;color:'+(t.status==='complete'?'#2E7D32':'var(--tan)')+';margin-top:2px">'+tp+'%'+(t.status==='complete'?' ✓':'')+'</div></td></tr>';
+  }).join('');
+
+  document.getElementById('tab-phases').innerHTML=
+    '<div class="card">' +
+    '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px">' +
+    '<div class="ctitle" style="margin-bottom:0">'+u('fullTimeline')+'</div></div>' +
+    '<div class="gw" style="overflow-x:auto;min-height:60px">'+ganttHTML+'</div></div>' +
+    '<div class="pbtns">'+phBtns+'</div>' +
+    '<div class="card" id="phase-detail" style="border:2px solid '+ph.color+'">' +
+    '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px">' +
+    '<div><div style="font-family:\'Playfair Display\',serif;font-size:18px;font-weight:700;color:'+ph.color+'">'+phLbl+': '+phTitle+'</div>' +
+    '<div style="font-size:11px;color:var(--tan);margin-top:4px">'+u('budgetCol')+': '+fm(ph.budget)+' &nbsp; '+u('paidCol')+': '+fm(ph.paid)+' &nbsp; '+u('balanceCol')+': '+fm(nv(ph.budget)-nv(ph.paid))+'</div></div>' +
+    '<div style="text-align:right"><div style="font-family:\'Playfair Display\',serif;font-size:24px;font-weight:700;color:'+ph.color+'">'+p+'%</div><div style="font-size:10px;color:var(--tan)">'+u('complete')+'</div></div></div>' +
+    '<div class="pb" style="height:12px;margin-bottom:14px"><div class="pbf" style="width:'+p+'%;background:'+ph.color+';height:12px"></div></div>' +
+    (phWarn?'<div class="aalert">'+phWarn+'</div>':'')+
+    '<div style="overflow-x:auto"><table><thead><tr style="border-bottom:2px solid var(--border)">' +
+    '<th></th><th>'+u('taskCol')+'</th><th>'+u('statusCol')+'</th><th>'+u('contractorCol')+'</th><th>'+u('budgetCol')+'</th><th>'+u('paidCol')+'</th><th>'+u('balanceCol')+'</th><th>'+u('progressCol')+'</th></tr></thead>' +
+    '<tbody>'+taskRows+'</tbody></table></div></div>';
+}
+function SPsel(id){SPH=id;RPH();setTimeout(function(){var d=document.getElementById('phase-detail');if(d)d.scrollIntoView({behavior:'smooth',block:'start'});},60);}
+
+/* ── BUDGET ───────────────────────────────────────── */
+function RBD(){
+  var cfg=D.cfg,total=nv(cfg.TotalBudget)||60000;
+  var phT=D.phases.reduce(function(s,p){return s+nv(p.budget);},0);
+  var over=phT-total;
+  var wfLabels=LANG==='es'?D.wfLabels_es:D.wfLabels;
+  var wfRows=D.wfKeys.map(function(k,i){
+    var l=wfLabels[i],c=D.wfColors[i],v=nv(cfg[k]),p=Math.round(v/total*100);
+    var s=i===0?'':'-';
+    return '<div class="wfr"><div class="wfl">'+l+'</div>' +
+      '<div class="wfb"><div class="wfbf" style="width:'+Math.min(p,100)+'%;background:'+c+'"></div></div>' +
+      '<div class="wfv" style="color:'+c+'">'+s+'B/.'+v.toLocaleString()+'</div></div>';
+  }).join('');
+
+  var mx=D.phases.reduce(function(m,p){return Math.max(m,nv(p.budget));},1);
+  var svgH=D.phases.length*52+30;
+  var svg='<svg width="100%" viewBox="0 0 480 '+svgH+'" style="font-family:\'Source Sans 3\',sans-serif">';
+  D.phases.forEach(function(ph,i){
+    var y=i*52+18,bw=Math.round(nv(ph.budget)/mx*300),pw=Math.round(nv(ph.paid)/mx*300);
+    var lbl=LANG==='es'?(ph.lbl_es||ph.lbl):ph.lbl;
+    svg+='<text x="0" y="'+(y+15)+'" font-size="11" fill="#2C1810" font-weight="700">'+lbl+'</text>';
+    svg+='<rect x="68" y="'+y+'" width="'+bw+'" height="20" rx="3" fill="#E8D5B0"/>';
+    svg+='<text x="'+(68+bw+4)+'" y="'+(y+14)+'" font-size="10" fill="#7B6654">'+fm(ph.budget)+'</text>';
+    if(nv(ph.paid)>0){svg+='<rect x="68" y="'+(y+22)+'" width="'+pw+'" height="14" rx="3" fill="'+ph.color+'" opacity="0.85"/>';}
+  });
+  svg+='</svg>';
+
+  var notes=D.regNotes.map(function(r){
+    var t=LANG==='es'?(r.title_es||r.title):r.title;
+    var d=LANG==='es'?(r.desc_es||r.desc):r.desc;
+    return '<div style="background:var(--cream);border-radius:8px;padding:11px 14px">' +
+      '<div style="font-weight:700;font-size:11px;color:var(--rust);margin-bottom:3px">'+t+'</div>' +
+      '<div style="font-size:11px;line-height:1.5">'+d+'</div></div>';
+  }).join('');
+
+  document.getElementById('tab-budget').innerHTML=
+    '<div class="g2">' +
+    '<div class="card"><div class="ctitle">'+u('budgetWaterfall')+'</div>' +
+    wfRows +
+    '<div style="border-top:2px solid #2E7D32;padding-top:12px;margin-top:8px;display:flex;justify-content:space-between;align-items:center">' +
+    '<div style="font-weight:700;font-size:13px">'+u('netConstruction')+'</div>' +
+    '<div style="font-family:\'Playfair Display\',serif;font-size:23px;font-weight:700;color:#2E7D32">B/. '+nv(cfg.NetConstruction).toLocaleString()+'</div></div></div>' +
+    '<div class="card"><div class="ctitle">'+u('phaseBudget')+'</div>' +
+    '<div style="padding:6px 0">'+svg+'</div>' +
+    '<div style="font-size:11px;color:'+(over>0?'#C62828':'#2E7D32')+';text-align:center;margin-top:8px;font-weight:600">' +
+    (over>0?u('exceedsBudget')+over.toLocaleString():u('withinBudget'))+'</div></div></div>' +
+    '<div class="card"><div class="ctitle">'+u('regNotes')+'</div>' +
+    '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px">'+notes+'</div></div>';
+}
+
+/* ── CONTRACTORS ──────────────────────────────────── */
+function RCO(){
+  var cards=D.contractors.map(function(c){
+    var tot=nv(c.total),pd=nv(c.paid),p=pc(pd,tot);
+    var ss={PAID:{bg:'#C8E6C9',fg:'#2E7D32'},ACTIVE:{bg:'#FFF3E0',fg:'#E65100'},PENDING:{bg:'#F5F5F5',fg:'#7B6654'}}[c.status]||{bg:'#F5F5F5',fg:'#7B6654'};
+    var tc=c.status==='PAID'?'#2E7D32':'var(--rust)';
+    var sLabel={PAID:u('statusPaid'),ACTIVE:u('statusActiveCo'),PENDING:u('statusPendingCo')}[c.status]||c.status;
+    var scope=LANG==='es'?(c.scope_es||c.scope):c.scope;
+    var notes=LANG==='es'?(c.notes_es||c.notes):c.notes;
+    var sup=c.inv==='--';
+    if(sup){
+      return '<div class="ccard" style="border-top:4px solid var(--gold)">' +
+        '<div style="font-weight:700;font-size:14px;margin-bottom:3px">'+c.name+'</div>' +
+        '<div style="font-size:11px;color:var(--tan);margin-bottom:11px">'+scope+'</div>' +
+        '<div class="cgr"><div class="cst"><div class="csl">'+u('paidDate')+'</div><div class="csv" style="color:#2E7D32">$'+nv(c.paid).toLocaleString()+'</div></div>' +
+        '<div class="cst"><div class="csl">'+u('finalPay')+'</div><div class="csv" style="color:#E65100">$'+nv(c.final).toLocaleString()+'</div></div></div>' +
+        '<div style="font-size:11px;color:var(--tan)">'+notes+'</div></div>';
+    }
+    return '<div class="ccard" style="border-top:4px solid '+tc+'">' +
+      '<div style="margin-bottom:11px"><div style="font-weight:700;font-size:14px">'+c.name+'</div>' +
+      '<div style="font-size:11px;color:var(--tan);margin-top:3px">'+scope+' — '+c.inv+'</div></div>' +
+      '<span class="badge" style="background:'+ss.bg+';color:'+ss.fg+';display:inline-block;margin-bottom:11px">'+sLabel+'</span>' +
+      '<div class="cgr">' +
+      '<div class="cst"><div class="csl">'+u('contractTotal')+'</div><div class="csv">B/.'+nv(c.total).toLocaleString()+'</div></div>' +
+      '<div class="cst"><div class="csl">'+u('paidDate')+'</div><div class="csv" style="color:#2E7D32">B/.'+nv(c.paid).toLocaleString()+'</div></div>' +
+      '<div class="cst"><div class="csl">'+u('due70')+'</div><div class="csv" style="color:#E65100">B/.'+nv(c.d70).toLocaleString()+'</div></div>' +
+      '<div class="cst"><div class="csl">'+u('finalPay')+'</div><div class="csv" style="color:var(--rust)">B/.'+nv(c.final).toLocaleString()+'</div></div></div>' +
+      '<div class="pb" style="height:9px"><div class="pbf" style="width:'+p+'%;background:'+tc+';height:9px"></div></div>' +
+      '<div style="font-size:10px;color:var(--tan);margin-top:6px">'+p+'% '+u('paidCol').toLowerCase()+' — '+notes+'</div></div>';
+  }).join('');
+
+  document.getElementById('tab-contractors').innerHTML=
+    '<div class="g3">'+cards+'</div>';
+}
+
+/* ── DIMENSIONS ───────────────────────────────────── */
+function RRM(){
+  var SS={Existing:'background:#F5F5F5;color:#616161;border:1px solid #E0E0E0',
+    Renovation:'background:#FFF8E1;color:#F57F17;border:1px solid #FFD54F',
+    Locked:'background:#E3F2FD;color:#01579B;border:1px solid #90CAF9',
+    Active:'background:#E0F2F1;color:#00695C;border:1px solid #80CBC4',
+    New:'background:#FFF3E0;color:#E65100;border:1px solid #FFB74D'};
+  var t=D.rtotals;
+  var tots=[
+    {l:LANG==='es'?'Área Casa':'House Area',v:t.house+' ft²',c:'#2C1810'},
+    {l:LANG==='es'?'Área Terraza':'Terraza Area',v:t.terraza+' ft²',c:'var(--rust)'},
+    {l:LANG==='es'?'Portal Frontal':'Front Porch',v:t.porch+' ft²',c:'var(--gold)'},
+    {l:LANG==='es'?'Total General':'Grand Total',v:t.grand+' ft²',c:'#00695C'}
+  ].map(function(s){
+    return '<div class="sc" style="border-top:4px solid '+s.c+'">' +
+      '<div class="sval" style="color:'+s.c+'">'+s.v+'</div><div class="slbl">'+s.l+'</div></div>';
+  }).join('');
+
+  var rows=D.rooms.map(function(r){
+    var ss2=SS[r.status]||SS.Existing;
+    var zone=LANG==='es'?(r.zone_es||r.zone):r.zone;
+    var name=LANG==='es'?(r.name_es||r.name):r.name;
+    var statusLabel=LANG==='es'?(r.status_es||r.status):r.status;
+    return '<tr>' +
+      '<td style="color:var(--tan);font-size:10px;font-weight:600">'+zone+'</td>' +
+      '<td style="font-weight:'+(r.status==='New'?'700':'400')+';color:'+(r.status==='New'?'var(--rust)':'var(--brown)')+'">'+name+'</td>' +
+      '<td style="font-family:monospace">'+r.depth+'</td>' +
+      '<td style="font-family:monospace">'+r.width+'</td>' +
+      '<td style="font-weight:700">'+r.sqft+'</td>' +
+      '<td><span class="badge" style="'+ss2+'">'+statusLabel+'</span></td></tr>';
+  }).join('');
+
+  var tnote=LANG==='es'?(D.tnote_es||D.tnote):D.tnote;
+
+  document.getElementById('tab-rooms').innerHTML=
+    '<div class="gst" style="grid-template-columns:repeat(auto-fill,minmax(145px,1fr))">'+tots+'</div>' +
+    '<div class="card"><div class="ctitle">'+u('allSpaces')+'</div>' +
+    '<div style="overflow-x:auto"><table><thead class="thd"><tr>' +
+    '<th>'+u('zone')+'</th><th>'+u('room')+'</th><th>'+u('depth')+'</th><th>'+u('width')+'</th><th>'+u('sqft')+'</th><th>'+u('statusH')+'</th>' +
+    '</tr></thead><tbody>'+rows+'</tbody></table></div></div>' +
+    '<div style="background:#E3F2FD;border:1px solid #90CAF9;border-radius:8px;padding:12px 16px;font-size:12px;line-height:1.6;margin-top:4px">'+tnote+'</div>';
+}
+
+/* ── NEXT STEPS ───────────────────────────────────── */
+function RNS(){
+  var sections=D.nextsteps.map(function(cat){
+    var catName=LANG==='es'?(cat.cat_es||cat.cat):cat.cat;
+    var items=cat.items.map(function(ns){
+      var title=LANG==='es'?(ns.title_es||ns.title):ns.title;
+      var desc=LANG==='es'?(ns.desc_es||ns.desc):ns.desc;
+      var timing=LANG==='es'?(ns.timing_es||ns.timing):ns.timing;
+      return '<div class="nsc" style="border-left:5px solid '+cat.border+'">' +
+        '<div style="font-size:10px;font-weight:700;color:'+cat.color+';margin-bottom:8px">'+timing+'</div>' +
+        '<div style="font-weight:700;font-size:13px;margin-bottom:4px">'+title+'</div>' +
+        '<div style="font-size:11px;color:var(--tan);line-height:1.5">'+desc+'</div></div>';
+    }).join('');
+    return '<div class="card" style="border-top:4px solid '+cat.border+';margin-bottom:16px">' +
+      '<div class="ctitle" style="color:'+cat.color+'">'+catName+'</div>' +
+      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px">'+items+'</div></div>';
+  }).join('');
+
+  var cp=LANG==='es'?(D.cp_es||D.cp):D.cp;
+  var cpLines=cp.split('\n').map(function(l){return l?'<div style="margin-bottom:3px">'+l+'</div>':'';}).join('');
+
+  document.getElementById('tab-nextsteps').innerHTML=
+    sections +
+    '<div class="ralert">' +
+    '<div style="font-family:\'Playfair Display\',serif;font-size:15px;font-weight:700;color:var(--rust);margin-bottom:10px">'+u('criticalPath')+'</div>' +
+    cpLines+'</div>';
+}
+
+/* ═══════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════ */
+document.getElementById('last-updated').textContent=
+  (new Date()).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+
+window.addEventListener('DOMContentLoaded',function(){RA();});
+</script>
+</body>
+</html>
