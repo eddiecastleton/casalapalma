@@ -217,15 +217,16 @@ var D={
     "TotalBudget": 50000,
     "PaidToDate": 13485,
     "Outstanding": 3860,
-    "FutureSup": 6975,
+    "FutureSup": 7000,
     "Contingency": 5000,
-    "NetConstruction": 30000
+    "NetConstruction": 30000,
+    "NetNonConstruction": 20000
   },
   "cfgL": {
     "TotalBudget": "Total Budget",
     "PaidToDate": "Paid to Date",
     "Outstanding": "Outstanding Due",
-    "FutureSup": "Future Superintendent",
+    "FutureSup": "FOREMAN future salary",
     "Contingency": "Contingency Reserve",
     "NetConstruction": "Net for Construction"
   },
@@ -255,7 +256,7 @@ var D={
       "name": "",
       "scope": "Roof House leaks + gutter",
       "inv": "INV-002",
-      "status": "ACTIVE",
+      "status": "PAID",
       "total": 2260,
       "paid": 2260,
       "d70": 500,
@@ -446,7 +447,7 @@ var D={
       "pid": 3,
       "name": "House roof repairs + colonial tile + gutters",
       "status": "complete",
-      "cost": 1500,
+      "cost": 1000,
       "paid": 1500,
       "who": "??",
       "progress": 100,
@@ -466,7 +467,7 @@ var D={
       "pid": 3,
       "name": "Drainage & waterproofing - alley + terraza wall",
       "status": "pending",
-      "cost": 1200,
+      "cost": 1000,
       "paid": 0,
       "who": "TBD",
       "progress": 0,
@@ -474,33 +475,43 @@ var D={
     },
     {
       "pid": 4,
-      "name": "Install new 1st floor windows ",
+      "name": "Install new 1st floor WINDOWS",
       "status": "pending",
       "cost": 800,
       "paid": 0,
       "who": "",
       "progress": 0,
-      "name_es": "Install new 1st floor windows "
+      "name_es": "Install new 1st floor WINDOWS"
     },
     {
       "pid": 4,
-      "name": "Install new 2nd floor windows ",
+      "name": "Install new 2nd floor WINDOWS ",
       "status": "pending",
       "cost": 800,
       "paid": 0,
       "who": "",
       "progress": 0,
-      "name_es": "Install new 2nd floor windows "
+      "name_es": "Install new 2nd floor WINDOWS "
     },
     {
       "pid": 4,
-      "name": "Install structural post kitchen wall",
+      "name": "Burglar Bars - all windows",
+      "status": "pending",
+      "cost": 800,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Burglar Bars - all windows"
+    },
+    {
+      "pid": 4,
+      "name": "Install STRUCTURAL POST kitchen wall",
       "status": "pending",
       "cost": 1500,
       "paid": 0,
       "who": "",
       "progress": 0,
-      "name_es": "Install structural post kitchen wall"
+      "name_es": "Install STRUCTURAL POST kitchen wall"
     },
     {
       "pid": 4,
@@ -514,33 +525,23 @@ var D={
     },
     {
       "pid": 4,
-      "name": "Demo kitchen wall ",
+      "name": "Demo KITCHEN WALL",
       "status": "pending",
       "cost": 200,
       "paid": 0,
       "who": "",
       "progress": 0,
-      "name_es": "Demo kitchen wall "
+      "name_es": "Demo KITCHEN WALL"
     },
     {
       "pid": 4,
-      "name": "Demo kitchen ceiling + 2nd floor slab",
+      "name": "Demo KITCHEN CEILING + 2nd floor slab",
       "status": "pending",
       "cost": 300,
       "paid": 0,
       "who": "",
       "progress": 0,
-      "name_es": "Demoler cielo raso de cocina + losa de 2do piso"
-    },
-    {
-      "pid": 4,
-      "name": "Remove existing staircase",
-      "status": "pending",
-      "cost": 200,
-      "paid": 0,
-      "who": "",
-      "progress": 0,
-      "name_es": "Demolición de escalera existente"
+      "name_es": "Demo KITCHEN CEILING + 2nd floor slab"
     },
     {
       "pid": 5,
@@ -556,7 +557,7 @@ var D={
       "pid": 5,
       "name": "Build closets - bedroom #1 & #2",
       "status": "pending",
-      "cost": 600,
+      "cost": 500,
       "paid": 0,
       "who": "",
       "progress": 0,
@@ -576,7 +577,7 @@ var D={
       "pid": 5,
       "name": "Kitchen cabinets + countertops",
       "status": "pending",
-      "cost": 2500,
+      "cost": 2000,
       "paid": 0,
       "who": "",
       "progress": 0,
@@ -586,7 +587,7 @@ var D={
       "pid": 5,
       "name": "Bathroom interior remodel + fixtures",
       "status": "pending",
-      "cost": 2500,
+      "cost": 2000,
       "paid": 0,
       "who": "",
       "progress": 0,
@@ -594,19 +595,9 @@ var D={
     },
     {
       "pid": 5,
-      "name": "Burglar Bars - all windows",
-      "status": "pending",
-      "cost": 1000,
-      "paid": 0,
-      "who": "",
-      "progress": 0,
-      "name_es": "Burglar Bars - all windows"
-    },
-    {
-      "pid": 5,
       "name": "Kitchen to terraza step-down fix",
       "status": "pending",
-      "cost": 400,
+      "cost": 200,
       "paid": 0,
       "who": "",
       "progress": 0,
@@ -616,7 +607,7 @@ var D={
       "pid": 6,
       "name": "Bathroom remodel & windows ",
       "status": "pending",
-      "cost": 600,
+      "cost": 1000,
       "paid": 0,
       "who": "",
       "progress": 0,
@@ -636,7 +627,7 @@ var D={
       "pid": 6,
       "name": "Septic relocation - MINSA approval required",
       "status": "pending",
-      "cost": 2500,
+      "cost": 1500,
       "paid": 0,
       "who": "",
       "progress": 0,
@@ -646,7 +637,7 @@ var D={
       "pid": 6,
       "name": "Courtyard layout + landscaping",
       "status": "pending",
-      "cost": 1200,
+      "cost": 1000,
       "paid": 0,
       "who": "",
       "progress": 0,
@@ -656,7 +647,7 @@ var D={
       "pid": 6,
       "name": "Backup water tank assessment",
       "status": "pending",
-      "cost": 300,
+      "cost": 600,
       "paid": 0,
       "who": "",
       "progress": 0,
@@ -666,7 +657,7 @@ var D={
       "pid": 7,
       "name": "Repair / remodel deposito",
       "status": "pending",
-      "cost": 1500,
+      "cost": 1000,
       "paid": 0,
       "who": "",
       "progress": 0,
@@ -676,7 +667,7 @@ var D={
       "pid": 7,
       "name": "Remodel Mama Zoila house",
       "status": "pending",
-      "cost": 4000,
+      "cost": 2500,
       "paid": 0,
       "who": "",
       "progress": 0,
@@ -686,7 +677,7 @@ var D={
       "pid": 7,
       "name": "Canasa property assessment",
       "status": "pending",
-      "cost": 500,
+      "cost": 0,
       "paid": 0,
       "who": "",
       "progress": 0,
@@ -717,7 +708,7 @@ var D={
       "name": "Windows - house front (2)",
       "status": "complete",
       "cost": 500,
-      "paid": 0,
+      "paid": 500,
       "who": "",
       "progress": 100,
       "name_es": "Windows - house front (2)"
@@ -736,7 +727,7 @@ var D={
       "pid": 3,
       "name": "crack repair exterior walls",
       "status": "pending",
-      "cost": 1500,
+      "cost": 500,
       "paid": 0,
       "who": "??",
       "progress": 0,
@@ -761,63 +752,61 @@ var D={
       "who": "",
       "progress": 0,
       "name_es": "Plumbing upgrades"
+    },
+    {
+      "pid": 4,
+      "name": "demo STAIRCASE",
+      "status": "pending",
+      "cost": 200,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "demo STAIRCASE"
     }
   ],
   "milestones": [
     {
       "status": "done",
       "date": "Oct 2025",
-      "desc": "Structural assessments - no major damage found",
-      "desc_es": "Evaluaciones estructurales - sin daños mayores"
+      "desc": "Front Porch fill in cement",
+      "desc_es": "Front Porch fill in cement"
     },
     {
       "status": "done",
       "date": "Nov 2025",
-      "desc": "Zapatas + anchors - Batista paid in full B/. 4,800",
+      "desc": "Zapatas + anchors - Footing & Post House ",
       "desc_es": "Zapatas + anclajes - Batista pagado en su totalidad B/. 4,800"
     },
     {
       "status": "done",
-      "date": "Jan 2026",
-      "desc": "Floor plan v15 design finalization",
-      "desc_es": "Finalización del diseño de plano v15"
+      "date": "DEC 2025",
+      "desc": "Windows - house front (2)",
+      "desc_es": "Windows - house front (2)"
     },
     {
       "status": "done",
-      "date": "Mar 2026",
-      "desc": "v15 LOCKED - 3 new doors confirmed",
-      "desc_es": "v15 BLOQUEADO - 3 nuevas puertas confirmadas"
+      "date": "FEB 2026",
+      "desc": "House roof repairs + colonial tile + gutters",
+      "desc_es": "House roof repairs + colonial tile + gutters"
     },
     {
       "status": "active",
-      "date": "Mar 2026",
-      "desc": "Rear patio roof demo + rebuild - ACTIVE NOW",
-      "desc_es": "Demo + reconstrucción de techo trasero - EN PROGRESO"
+      "date": "MARCH 2026",
+      "desc": "Rear patio roof demo + rebuild- ACTIVE NOW",
+      "desc_es": "Rear patio roof demo + rebuild- ACTIVE NOW"
     },
     {
       "status": "pending",
-      "date": "Apr 2026",
-      "desc": "All exterior work done before Azuero lluvia season",
-      "desc_es": "Todo el trabajo exterior terminado antes de la lluvia de Azuero"
-    },
-    {
-      "status": "pending",
-      "date": "May 2026",
-      "desc": "Phase 2: Bedroom 3 wall - 3 doors - Demo - Loft raise",
-      "desc_es": "Fase 2: Pared Cuarto 3 - 3 puertas - Demolición - Elevación de loft"
-    },
-    {
-      "status": "pending",
-      "date": "Dec 2026",
-      "desc": "Project substantial completion",
-      "desc_es": "Terminación sustancial del proyecto"
+      "date": "",
+      "desc": "Bedroom 3 wall - 3 doors - Demo - Loft raise",
+      "desc_es": "Bedroom 3 wall - 3 doors - Demo - Loft raise"
     }
   ],
   "wfLabels": [
     "Total Budget",
     "Paid to Date",
     "Outstanding",
-    "Future Superintendent",
+    "Future Foreman",
     "Contingency"
   ],
   "wfKeys": [
@@ -954,17 +943,17 @@ var D={
   "doors": [
     {
       "color": "#B85042",
-      "title": "Door A - Bathroom South Wall",
+      "title": "Bathroom South Wall",
       "desc": "Centered - 3ft wide - swings north into bathroom",
-      "title_es": "Puerta A - Pared Sur del Baño",
-      "desc_es": "Centrada - 3 pies de ancho - abre hacia el norte"
+      "title_es": "Bathroom South Wall",
+      "desc_es": "Centered - 3ft wide - swings north into bathroom"
     },
     {
       "color": "#C9974A",
-      "title": "Door B - Bedroom 3 West Wall",
+      "title": "Bedroom 3 West Wall",
       "desc": "Just south of closet - 3ft wide - swings east into Bed3",
-      "title_es": "Puerta B - Pared Oeste Cuarto 3",
-      "desc_es": "Al sur del closet - 3 pies de ancho - abre hacia el este"
+      "title_es": "Bedroom 3 West Wall",
+      "desc_es": "Just south of closet - 3ft wide - swings east into Bed3"
     },
     {
       "color": "#6A1B9A",
@@ -972,36 +961,57 @@ var D={
       "desc": "From courtyard - 3ft wide - swings east into laundry",
       "title_es": "Puerta C - Pared Oeste Lavandería",
       "desc_es": "Desde el patio - 3 pies de ancho - abre hacia el este"
+    },
+    {
+      "color": "#B85042",
+      "title": "Bedroom1 - living room north wall (west)",
+      "desc": "Click to edit",
+      "title_es": "Bedroom1 - living room north wall (west)",
+      "desc_es": "Click to edit"
+    },
+    {
+      "color": "#B85042",
+      "title": "Bedroom 2 - kitchen north wall (east)",
+      "desc": "Click to edit",
+      "title_es": "Bedroom 2 - kitchen north wall (east)",
+      "desc_es": "Click to edit"
     }
   ],
   "holidays": [
     {
       "icon": "&#127783;",
-      "title": "Azuero lluvia season",
-      "desc": "Begins May 2026 - ALL exterior work must complete before this",
-      "title_es": "Temporada de lluvia de Azuero",
-      "desc_es": "Inicia mayo 2026 - TODO el trabajo exterior debe terminar antes"
-    },
-    {
-      "icon": "&#9784;",
-      "title": "Semana Santa Holy Week",
-      "desc": "April 2026 - full labor pause - coordinate with Eduardo now",
-      "title_es": "Semana Santa",
-      "desc_es": "Abril 2026 - paro total de obra - coordinar con Eduardo ya"
+      "title": "Azuero DRY SEASON",
+      "desc": "December 2025 -  April 2026 - exterior work timeframe",
+      "title_es": "Azuero DRY SEASON",
+      "desc_es": "December 2025 -  April 2026 - exterior work timeframe"
     },
     {
       "icon": "&#127881;",
       "title": "Carnaval",
-      "desc": "Feb/Mar 2026 - Los Santos major celebration - reduced workers",
+      "desc": "February Holiday 1 week",
       "title_es": "Carnaval",
       "desc_es": "Feb/Mar 2026 - festividades principales en Los Santos - menos trabajadores"
     },
     {
+      "icon": "&#9784;",
+      "title": "Semana Santa Sunday March 29 - Friday April 5  ",
+      "desc": "Holiday",
+      "title_es": "Semana Santa Sunday March 29 - Friday April 5  ",
+      "desc_es": "Holiday"
+    },
+    {
       "icon": "&#127963;",
       "title": "November holidays cluster",
-      "desc": "Nov 1-28 multiple national holidays - plan phases accordingly",
+      "desc": "multiple national holidays ",
       "title_es": "Feriados de noviembre",
       "desc_es": "Nov 1-28 múltiples feriados nacionales - planificar fases en consecuencia"
+    },
+    {
+      "icon": "&#9888;",
+      "title": "December Holidays",
+      "desc": "Click to edit",
+      "title_es": "December Holidays",
+      "desc_es": "Click to edit"
     }
   ],
   "regNotes": [
@@ -1196,6 +1206,16 @@ var D={
   },
   "tnote": "TERRAZA LOCKED: All terraza dimensions are existing installed - zero renovation required on these elements.",
   "cp": "All Phase 1 structural, roof and waterproofing work MUST complete before Azuero rainy season - May 2026.\n- Semana Santa April 2026 = full labor pause. \n- MINSA approval required before any septic tank relocation work - Phase 4.",
+  "ovTitles": {
+    "milestones": "Key Milestones",
+    "budget": "Budget Snapshot",
+    "doors": "New Doors location",
+    "alerts": "Panama Holiday + Season Alerts"
+  },
+  "netLabel": "NET FOR CONSTRUCTION",
+  "netNonLabel": "NET FOR NON-CONSTRUCTION",
+  "totalToDateLabel": "TOTAL TO DATE",
+  "ovCards": [],
   "cfgL_es": {
     "TotalBudget": "Presupuesto Total",
     "PaidToDate": "Pagado a la Fecha",
