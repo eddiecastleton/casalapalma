@@ -192,7 +192,7 @@ var MONTHS_ES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov'
 var D={
   "header": {
     "title": "Casa La Palma",
-    "sub": "La Palma, Provincia de Los Santos, Panama - Renovation 2026",
+    "sub": "La Palma, Provincia de Los Santos, Panama - Renovation 2025 /2026",
     "label": "RC2 Consulting - Project Management Dashboard"
   },
   "footer": {
@@ -205,12 +205,16 @@ var D={
       "v": "ACTIVE"
     },
     {
-      "l": "v15 Plan",
+      "l": "Budget",
       "v": "LOCKED"
     },
     {
-      "l": "3 Doors",
-      "v": "ADDED"
+      "l": "DELAYS",
+      "v": "NONE"
+    },
+    {
+      "l": "TIMELINE",
+      "v": "CURRENT"
     }
   ],
   "cfg": {
@@ -457,7 +461,7 @@ var D={
       "pid": 3,
       "name": "Build bedroom #3",
       "status": "pending",
-      "cost": 1500,
+      "cost": 1000,
       "paid": 0,
       "who": "",
       "progress": 0,
@@ -537,7 +541,7 @@ var D={
       "pid": 4,
       "name": "Demo KITCHEN CEILING + 2nd floor slab",
       "status": "pending",
-      "cost": 300,
+      "cost": 200,
       "paid": 0,
       "who": "",
       "progress": 0,
@@ -727,7 +731,7 @@ var D={
       "pid": 3,
       "name": "crack repair exterior walls",
       "status": "pending",
-      "cost": 500,
+      "cost": 700,
       "paid": 0,
       "who": "??",
       "progress": 0,
@@ -945,6 +949,7 @@ var D={
       "color": "#B85042",
       "title": "Bathroom South Wall",
       "desc": "Centered - 3ft wide - swings north into bathroom",
+      "status": "pending",
       "title_es": "Bathroom South Wall",
       "desc_es": "Centered - 3ft wide - swings north into bathroom"
     },
@@ -952,20 +957,23 @@ var D={
       "color": "#C9974A",
       "title": "Bedroom 3 West Wall",
       "desc": "Just south of closet - 3ft wide - swings east into Bed3",
+      "status": "pending",
       "title_es": "Bedroom 3 West Wall",
       "desc_es": "Just south of closet - 3ft wide - swings east into Bed3"
     },
     {
       "color": "#6A1B9A",
-      "title": "Door C - Lavanderia West Wall",
+      "title": "Lavanderia West Wall",
       "desc": "From courtyard - 3ft wide - swings east into laundry",
-      "title_es": "Puerta C - Pared Oeste Lavandería",
-      "desc_es": "Desde el patio - 3 pies de ancho - abre hacia el este"
+      "status": "pending",
+      "title_es": "Lavanderia West Wall",
+      "desc_es": "From courtyard - 3ft wide - swings east into laundry"
     },
     {
       "color": "#B85042",
       "title": "Bedroom1 - living room north wall (west)",
       "desc": "Click to edit",
+      "status": "pending",
       "title_es": "Bedroom1 - living room north wall (west)",
       "desc_es": "Click to edit"
     },
@@ -973,7 +981,16 @@ var D={
       "color": "#B85042",
       "title": "Bedroom 2 - kitchen north wall (east)",
       "desc": "Click to edit",
+      "status": "pending",
       "title_es": "Bedroom 2 - kitchen north wall (east)",
+      "desc_es": "Click to edit"
+    },
+    {
+      "color": "#B85042",
+      "title": "Lavanderia West wall (south)",
+      "desc": "Click to edit",
+      "status": "pending",
+      "title_es": "Lavanderia West wall (south)",
       "desc_es": "Click to edit"
     }
   ],
@@ -982,6 +999,7 @@ var D={
       "icon": "&#127783;",
       "title": "Azuero DRY SEASON",
       "desc": "December 2025 -  April 2026 - exterior work timeframe",
+      "status": "pending",
       "title_es": "Azuero DRY SEASON",
       "desc_es": "December 2025 -  April 2026 - exterior work timeframe"
     },
@@ -989,6 +1007,7 @@ var D={
       "icon": "&#127881;",
       "title": "Carnaval",
       "desc": "February Holiday 1 week",
+      "status": "pending",
       "title_es": "Carnaval",
       "desc_es": "Feb/Mar 2026 - festividades principales en Los Santos - menos trabajadores"
     },
@@ -996,6 +1015,7 @@ var D={
       "icon": "&#9784;",
       "title": "Semana Santa Sunday March 29 - Friday April 5  ",
       "desc": "Holiday",
+      "status": "pending",
       "title_es": "Semana Santa Sunday March 29 - Friday April 5  ",
       "desc_es": "Holiday"
     },
@@ -1003,6 +1023,7 @@ var D={
       "icon": "&#127963;",
       "title": "November holidays cluster",
       "desc": "multiple national holidays ",
+      "status": "pending",
       "title_es": "Feriados de noviembre",
       "desc_es": "Nov 1-28 múltiples feriados nacionales - planificar fases en consecuencia"
     },
@@ -1010,6 +1031,7 @@ var D={
       "icon": "&#9888;",
       "title": "December Holidays",
       "desc": "Click to edit",
+      "status": "pending",
       "title_es": "December Holidays",
       "desc_es": "Click to edit"
     }
@@ -1215,7 +1237,266 @@ var D={
   "netLabel": "NET FOR CONSTRUCTION",
   "netNonLabel": "NET FOR NON-CONSTRUCTION",
   "totalToDateLabel": "TOTAL TO DATE",
-  "ovCards": [],
+  "ovCards": [
+    {
+      "title": "Terraza",
+      "borderColor": "#C9974A",
+      "items": [
+        {
+          "color": "#C9974A",
+          "title": "Raise & insulate roof ",
+          "desc": "Click to edit description",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Build Bedrroom #3",
+          "desc": "Click to edit",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Septic tank",
+          "desc": "seal & relocate",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Electrical reconfiguration",
+          "desc": "Click to edit",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Flooring - tiles?",
+          "desc": "Click to edit",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Lights & Fans",
+          "desc": "Click to edit",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Paint",
+          "desc": "Click to edit",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "title": "Bedrooms ",
+      "borderColor": "#C9974A",
+      "items": [
+        {
+          "color": "#C9974A",
+          "title": "Bedroom #3 ",
+          "desc": "build",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Bedroom 1 & 2",
+          "desc": "demo & reconfigure",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Electrical reconfiguration",
+          "desc": "bedroom 1 & 2",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Flooring - tiles bedroom 1 & 2",
+          "desc": "same as rest of house",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Closets build",
+          "desc": "walk in - bedrooms 1 & 2",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "title": "Laundry room",
+      "borderColor": "#C9974A",
+      "items": [
+        {
+          "color": "#C9974A",
+          "title": "Demo old outhouse hole / wall",
+          "desc": "Click to edit description",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Door install ",
+          "desc": "west wall",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Windows install",
+          "desc": "west wall",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Plumbing reconfiguration",
+          "desc": "Click to edit",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Electrical reconfiguration",
+          "desc": "Click to edit",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Flooring - tiles?",
+          "desc": "throughout",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Cabinets install",
+          "desc": "north wall",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "title": "Bathroom",
+      "borderColor": "#C9974A",
+      "items": [
+        {
+          "color": "#C9974A",
+          "title": "Demo old shower",
+          "desc": "Click to edit description",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Door install",
+          "desc": "Click to edit",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Windows install",
+          "desc": "Click to edit",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Plumbing reconfiguration",
+          "desc": "Click to edit",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Electrical reconfiguration",
+          "desc": "Click to edit",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Shower build",
+          "desc": "north wall",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Toilet install",
+          "desc": "west wall",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Vanity install",
+          "desc": "east wall",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "title": "Kitchen",
+      "borderColor": "#C9974A",
+      "items": [
+        {
+          "color": "#C9974A",
+          "title": "Demo",
+          "desc": "Click to edit description",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Windows install",
+          "desc": "south - east wall",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Plumbing reconfiguration",
+          "desc": "Click to edit",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Electrical reconfiguration",
+          "desc": "Click to edit",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Flooring - tiles ",
+          "desc": "same as rest of house",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "title": "Living Room - house",
+      "borderColor": "#C9974A",
+      "items": [
+        {
+          "color": "#C9974A",
+          "title": "New Item",
+          "desc": "Click to edit description",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Flooring - tiles ",
+          "desc": "same as rest of house",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Electrical reconfiguration",
+          "desc": "Click to edit",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Lights & Fans",
+          "desc": "Click to edit",
+          "status": "pending"
+        },
+        {
+          "color": "#C9974A",
+          "title": "Paint",
+          "desc": "Click to edit",
+          "status": "pending"
+        }
+      ]
+    }
+  ],
   "cfgL_es": {
     "TotalBudget": "Presupuesto Total",
     "PaidToDate": "Pagado a la Fecha",
