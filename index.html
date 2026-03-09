@@ -190,137 +190,1029 @@ var MONTHS_EN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov'
 var MONTHS_ES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
 
 var D={
-  header:{title:'Casa La Palma',sub:'La Palma, Provincia de Los Santos, Panama — Renovación 2026',label:'RC2 Consulting — Project Management Dashboard'},
-  footer:{left:'RC2 Consulting · Casa La Palma · v15 FINAL · 2026',right:'La Palma, Provincia de Los Santos, Panama · B/. = USD 1:1'},
-  badges:[{l:'Phase 1',v:'ACTIVE'},{l:'v15 Plan',v:'LOCKED'},{l:'3 Doors',v:'ADDED'}],
-  cfg:{TotalBudget:60000,PaidToDate:13485,Outstanding:3860,FutureSup:6975,Contingency:5000,NetConstruction:20680},
-  cfgL:{TotalBudget:'Total Budget',PaidToDate:'Paid to Date',Outstanding:'Outstanding Due',FutureSup:'Future Superintendent',Contingency:'Contingency Reserve',NetConstruction:'Net for Construction'},
-  cfgL_es:{TotalBudget:'Presupuesto Total',PaidToDate:'Pagado a la Fecha',Outstanding:'Monto Pendiente',FutureSup:'Superintendente Futuro',Contingency:'Reserva de Contingencia',NetConstruction:'Neto para Construcción'},
-  cfgC:{TotalBudget:'#00695C',PaidToDate:'#B85042',Outstanding:'#E65100',FutureSup:'#7B6654',Contingency:'#6A1B9A',NetConstruction:'#2E7D32'},
-  contractors:[
-    {name:'Creaciones Eduardo',scope:'Structural Restoration',scope_es:'Restauración Estructural',inv:'INV-001',status:'ACTIVE',total:4860,paid:2000,d70:1860,final:1000,notes:'Rebar + moisture work',notes_es:'Trabajo de varilla y humedad'},
-    {name:'Creaciones Eduardo',scope:'Wall Crack Repair',scope_es:'Reparación de Grietas en Paredes',inv:'INV-002',status:'ACTIVE',total:2260,paid:1260,d70:500,final:500,notes:'Exterior + interior cracks',notes_es:'Grietas exteriores e interiores'},
-    {name:'Servicios Batista',scope:'Zapatas + Structural Anchors',scope_es:'Zapatas + Anclajes Estructurales',inv:'INV-324',status:'PAID',total:4800,paid:4800,d70:0,final:0,notes:'Paid in full November 2025',notes_es:'Pagado en su totalidad noviembre 2025'},
-    {name:'Site Superintendent',scope_es:'Vivienda + Administración de Obra',scope:'Housing + Management',inv:'--',status:'ACTIVE',total:12400,paid:5425,d70:0,final:6975,notes:'$700/mo + $75 utilities',notes_es:'$700/mes + $75 servicios'}
+  "header": {
+    "title": "Casa La Palma",
+    "sub": "La Palma, Provincia de Los Santos, Panama - Renovation 2026",
+    "label": "RC2 Consulting - Project Management Dashboard"
+  },
+  "footer": {
+    "left": "RC2 Consulting - Casa La Palma - v15 FINAL - 2026",
+    "right": "La Palma, Provincia de Los Santos, Panama - B/. = USD 1:1"
+  },
+  "badges": [
+    {
+      "l": "Phase 1",
+      "v": "ACTIVE"
+    },
+    {
+      "l": "v15 Plan",
+      "v": "LOCKED"
+    },
+    {
+      "l": "3 Doors",
+      "v": "ADDED"
+    }
   ],
-  phases:[
-    {id:1,lbl:'Pre-Con A',lbl_es:'Pre-Obra A',title:'Planning + Design',title_es:'Planificación + Diseño',color:'#455A64',start:0,dur:1,budget:0,paid:0,warn:'January 2026 - Design finalization, contractor sourcing, permit research',warn_es:'Enero 2026 - Finalización de diseño, búsqueda de contratistas, investigación de permisos'},
-    {id:2,lbl:'Pre-Con B',lbl_es:'Pre-Obra B',title:'Permitting + Procurement',title_es:'Permisos + Adquisiciones',color:'#607D8B',start:1,dur:1,budget:2000,paid:0,warn:'February 2026 - MIVIOT/MOP filings, material orders, engineer sign-offs',warn_es:'Febrero 2026 - Trámites MIVIOT/MOP, pedidos de materiales, aprobación del ingeniero'},
-    {id:3,lbl:'Phase 1',lbl_es:'Fase 1',title:'Structural Safety',title_es:'Seguridad Estructural',color:'#B85042',start:2,dur:2,budget:15920,paid:10060,warn:'Complete before Azuero lluvia season May 2026 - Semana Santa April = labor pause',warn_es:'Completar antes de la lluvia de Azuero mayo 2026 - Semana Santa abril = paro laboral'},
-    {id:4,lbl:'Phase 2',lbl_es:'Fase 2',title:'Interior Demo + Reconfig',title_es:'Demolición Interior + Reconfiguración',color:'#C9974A',start:4,dur:4,budget:17200,paid:0,warn:'Source materials before rainy season',warn_es:'Conseguir materiales antes de la temporada de lluvias'},
-    {id:5,lbl:'Phase 3',lbl_es:'Fase 3',title:'Interior Remodel',title_es:'Remodelación Interior',color:'#01579B',start:8,dur:3,budget:15100,paid:0,warn:'',warn_es:''},
-    {id:6,lbl:'Phase 4',lbl_es:'Fase 4',title:'Exterior + Utilities',title_es:'Exterior + Instalaciones',color:'#00695C',start:5,dur:5,budget:5400,paid:0,warn:'MINSA approval required before septic work',warn_es:'Se requiere aprobación MINSA antes del trabajo de fosa séptica'},
-    {id:7,lbl:'Phase 5',lbl_es:'Fase 5',title:'Storage + Structures',title_es:'Depósito + Estructuras',color:'#6A1B9A',start:10,dur:2,budget:6000,paid:0,warn:'',warn_es:''}
+  "cfg": {
+    "TotalBudget": 50000,
+    "PaidToDate": 13485,
+    "Outstanding": 3860,
+    "FutureSup": 6975,
+    "Contingency": 5000,
+    "NetConstruction": 30000
+  },
+  "cfgL": {
+    "TotalBudget": "Total Budget",
+    "PaidToDate": "Paid to Date",
+    "Outstanding": "Outstanding Due",
+    "FutureSup": "Future Superintendent",
+    "Contingency": "Contingency Reserve",
+    "NetConstruction": "Net for Construction"
+  },
+  "cfgC": {
+    "TotalBudget": "#00695C",
+    "PaidToDate": "#B85042",
+    "Outstanding": "#E65100",
+    "FutureSup": "#7B6654",
+    "Contingency": "#6A1B9A",
+    "NetConstruction": "#2E7D32"
+  },
+  "contractors": [
+    {
+      "name": "Milton",
+      "scope": "Structural Restoration",
+      "inv": "INV-001",
+      "status": "ACTIVE",
+      "total": 4860,
+      "paid": 4860,
+      "d70": 1860,
+      "final": 1000,
+      "notes": "Rebar + moisture work",
+      "scope_es": "Structural Restoration",
+      "notes_es": "Rebar + moisture work"
+    },
+    {
+      "name": "",
+      "scope": "Roof House leaks + gutter",
+      "inv": "INV-002",
+      "status": "ACTIVE",
+      "total": 2260,
+      "paid": 2260,
+      "d70": 500,
+      "final": 500,
+      "notes": "Exterior + interior cracks",
+      "scope_es": "Roof House leaks + gutter",
+      "notes_es": "Exterior + interior cracks"
+    },
+    {
+      "name": "Servicios Batista",
+      "scope": "Zapatas + Structural Anchors",
+      "inv": "INV-324",
+      "status": "PAID",
+      "total": 4800,
+      "paid": 4800,
+      "d70": 0,
+      "final": 0,
+      "notes": "Paid in full November 2025",
+      "scope_es": "Zapatas + Anclajes Estructurales",
+      "notes_es": "Pagado en su totalidad noviembre 2025"
+    },
+    {
+      "name": "Site Superintendent",
+      "scope": "Housing + Management",
+      "inv": "--",
+      "status": "ACTIVE",
+      "total": 12400,
+      "paid": 5425,
+      "d70": 0,
+      "final": 6975,
+      "notes": "$700/mo + $75 utilities",
+      "scope_es": "Vivienda + Administración de Obra",
+      "notes_es": "$700/mes + $75 servicios"
+    }
   ],
-  tasks:[
-    {pid:1,name:'Floor plan finalization v15',name_es:'Finalización de plano v15',status:'complete',cost:0,paid:0,who:'Owner',progress:100},
-    {pid:1,name:'Contractor sourcing + quotes',name_es:'Búsqueda de contratistas + cotizaciones',status:'complete',cost:0,paid:0,who:'Superintendent',progress:100},
-    {pid:1,name:'Structural engineer assessment',name_es:'Evaluación de ingeniero estructural',status:'complete',cost:0,paid:0,who:'Engineer',progress:100},
-    {pid:2,name:'MIVIOT + MOP permit applications',name_es:'Solicitudes de permiso MIVIOT + MOP',status:'active',cost:800,paid:0,who:'Owner',progress:30},
-    {pid:2,name:'Colonial tile sourcing - Chitre',name_es:'Búsqueda de teja colonial - Chitré',status:'active',cost:200,paid:0,who:'Superintendent',progress:20},
-    {pid:2,name:'Teca/Roble timber orders',name_es:'Pedidos de madera Teca/Roble',status:'pending',cost:1000,paid:0,who:'TBD',progress:0},
-    {pid:3,name:'Rear patio roof demo + rebuild pitched',name_es:'Demo + reconstrucción de techo patio trasero (a dos aguas)',status:'active',cost:4800,paid:4800,who:'Batista',progress:100},
-    {pid:3,name:'House roof repairs + colonial tile',name_es:'Reparación de techo + teja colonial',status:'active',cost:2800,paid:2000,who:'Eduardo',progress:71},
-    {pid:3,name:'Rebar replacement + crack repair',name_es:'Cambio de varilla + reparación de grietas',status:'active',cost:2260,paid:1260,who:'Eduardo',progress:41},
-    {pid:3,name:'Structural restoration',name_es:'Restauración estructural',status:'active',cost:4860,paid:2000,who:'Eduardo',progress:40},
-    {pid:3,name:'Exterior waterproofing - alley + walls',name_es:'Impermeabilización exterior - callejón + paredes',status:'pending',cost:800,paid:0,who:'TBD',progress:0},
-    {pid:3,name:'Bathroom + laundry roof pitch raise',name_es:'Elevación de techo de baño y lavandería',status:'pending',cost:1200,paid:0,who:'TBD',progress:0},
-    {pid:4,name:'Remove existing staircase',name_es:'Demolición de escalera existente',status:'pending',cost:800,paid:0,who:'',progress:0},
-    {pid:4,name:'Build Closet 1 + Closet 2',name_es:'Construcción de Closet 1 + Closet 2',status:'pending',cost:1200,paid:0,who:'',progress:0},
-    {pid:4,name:'Demo kitchen wall - load path check first',name_es:'Demoler pared de cocina - verificar carga estructural primero',status:'pending',cost:600,paid:0,who:'',progress:0},
-    {pid:4,name:'Demo kitchen ceiling + 2nd floor slab',name_es:'Demoler cielo raso de cocina + losa de 2do piso',status:'pending',cost:2500,paid:0,who:'',progress:0},
-    {pid:4,name:'BUILD Bedroom 3 - new west wall',name_es:'CONSTRUIR Cuarto 3 - nueva pared oeste',status:'pending',cost:1200,paid:0,who:'',progress:0},
-    {pid:4,name:'Raise loft to 8-9 ft',name_es:'Elevar loft a 8-9 pies',status:'pending',cost:5500,paid:0,who:'',progress:0},
-    {pid:4,name:'Wooden railing Teca/Roble',name_es:'Baranda de madera Teca/Roble',status:'pending',cost:1800,paid:0,who:'',progress:0},
-    {pid:4,name:'New compact feature staircase',name_es:'Nueva escalera compacta de diseño',status:'pending',cost:2200,paid:0,who:'',progress:0},
-    {pid:4,name:'New 2nd floor windows post-raise',name_es:'Nuevas ventanas de 2do piso post-elevación',status:'pending',cost:1400,paid:0,who:'',progress:0},
-    {pid:5,name:'Raise all ground-floor window openings',name_es:'Elevar todas las ventanas de planta baja',status:'pending',cost:2200,paid:0,who:'',progress:0},
-    {pid:5,name:'New floor tiles throughout',name_es:'Nuevo piso de cerámica en toda la casa',status:'pending',cost:3500,paid:0,who:'',progress:0},
-    {pid:5,name:'Burglar bars throughout',name_es:'Rejas de seguridad en toda la casa',status:'pending',cost:1200,paid:0,who:'',progress:0},
-    {pid:5,name:'Front steps + rampa accesibilidad Ley 42',name_es:'Gradas frontales + rampa de accesibilidad Ley 42',status:'pending',cost:1800,paid:0,who:'',progress:0},
-    {pid:5,name:'Kitchen to terraza step-down fix',name_es:'Corrección de desnivel cocina-terraza',status:'pending',cost:400,paid:0,who:'',progress:0},
-    {pid:5,name:'Kitchen cabinets + countertops',name_es:'Gabinetes de cocina + encimeras',status:'pending',cost:3200,paid:0,who:'',progress:0},
-    {pid:5,name:'Bathroom interior remodel + fixtures',name_es:'Remodelación interior de baño + accesorios',status:'pending',cost:2800,paid:0,who:'',progress:0},
-    {pid:6,name:'Septic relocation - MINSA approval required',name_es:'Reubicación de fosa séptica - requiere aprobación MINSA',status:'pending',cost:2500,paid:0,who:'',progress:0},
-    {pid:6,name:'Courtyard layout + landscaping',name_es:'Diseño de patio + jardinería',status:'pending',cost:1200,paid:0,who:'',progress:0},
-    {pid:6,name:'Outhouse removal + laundry reconfig',name_es:'Demolición de letrina + reconfiguración de lavandería',status:'pending',cost:800,paid:0,who:'',progress:0},
-    {pid:6,name:'Backup water tank assessment',name_es:'Evaluación de tanque de agua de reserva',status:'pending',cost:300,paid:0,who:'',progress:0},
-    {pid:6,name:'Bathroom windows + exterior remodel',name_es:'Ventanas de baño + remodelación exterior',status:'pending',cost:600,paid:0,who:'',progress:0},
-    {pid:7,name:'Repair / remodel deposito',name_es:'Reparación / remodelación del depósito',status:'pending',cost:1500,paid:0,who:'',progress:0},
-    {pid:7,name:'Remodel Mama Zoila house',name_es:'Remodelación casa Mamá Zoila',status:'pending',cost:4000,paid:0,who:'',progress:0},
-    {pid:7,name:'Canasa property assessment',name_es:'Evaluación de propiedad Canasa',status:'pending',cost:500,paid:0,who:'',progress:0}
+  "phases": [
+    {
+      "id": 1,
+      "lbl": "Pre-Con A",
+      "title": "Planning + Design",
+      "color": "#455A64",
+      "start": 0,
+      "dur": 1,
+      "budget": 0,
+      "paid": 0,
+      "warn": "January 2026 - Design finalization, contractor sourcing, permit research",
+      "lbl_es": "Pre-Obra A",
+      "title_es": "Planificación + Diseño",
+      "warn_es": "Enero 2026 - Finalización de diseño, búsqueda de contratistas, investigación de permisos"
+    },
+    {
+      "id": 2,
+      "lbl": "2025 ",
+      "title": "Work Completed",
+      "color": "#607D8B",
+      "start": 0,
+      "dur": 1,
+      "budget": 2000,
+      "paid": 0,
+      "warn": "February 2026 - MIVIOT/MOP filings, material orders, engineer sign-offs",
+      "lbl_es": "Pre-Obra B",
+      "title_es": "Permisos + Adquisiciones",
+      "warn_es": "Febrero 2026 - Trámites MIVIOT/MOP, pedidos de materiales, aprobación del ingeniero"
+    },
+    {
+      "id": 3,
+      "lbl": "Phase 1",
+      "title": "Roofs & H2O gutters / drainage",
+      "color": "#B85042",
+      "start": 1,
+      "dur": 3,
+      "budget": 15920,
+      "paid": 10060,
+      "warn": "Complete before Azuero lluvia season May 2026 - Semana Santa April = labor pause",
+      "lbl_es": "Fase 1",
+      "title_es": "Seguridad Estructural",
+      "warn_es": "Completar antes de la lluvia de Azuero mayo 2026 - Semana Santa abril = paro laboral"
+    },
+    {
+      "id": 4,
+      "lbl": "Phase 2",
+      "title": "Interior Demo + Raise 2nd floor + Install Windows",
+      "color": "#C9974A",
+      "start": 3,
+      "dur": 2,
+      "budget": 17200,
+      "paid": 0,
+      "warn": "Source materials before rainy season",
+      "lbl_es": "Fase 2",
+      "title_es": "Demolición Interior + Reconfiguración",
+      "warn_es": "Conseguir materiales antes de la temporada de lluvias"
+    },
+    {
+      "id": 5,
+      "lbl": "Phase 3",
+      "title": "Interior Remodel",
+      "color": "#01579B",
+      "start": 5,
+      "dur": 2,
+      "budget": 15100,
+      "paid": 0,
+      "warn": "",
+      "lbl_es": "Fase 3",
+      "title_es": "Remodelación Interior",
+      "warn_es": ""
+    },
+    {
+      "id": 6,
+      "lbl": "Phase 4",
+      "title": "Exterior + Utilities",
+      "color": "#00695C",
+      "start": 7,
+      "dur": 2,
+      "budget": 5400,
+      "paid": 0,
+      "warn": "MINSA approval required before septic work",
+      "lbl_es": "Fase 4",
+      "title_es": "Exterior + Instalaciones",
+      "warn_es": "Se requiere aprobación MINSA antes del trabajo de fosa séptica"
+    },
+    {
+      "id": 7,
+      "lbl": "Phase 5",
+      "title": "Storage + Structures",
+      "color": "#6A1B9A",
+      "start": 9,
+      "dur": 3,
+      "budget": 6000,
+      "paid": 0,
+      "warn": "",
+      "lbl_es": "Fase 5",
+      "title_es": "Depósito + Estructuras",
+      "warn_es": ""
+    }
   ],
-  milestones:[
-    {status:'done',date:'Oct 2025',desc:'Structural assessments - no major damage found',desc_es:'Evaluaciones estructurales - sin daños mayores'},
-    {status:'done',date:'Nov 2025',desc:'Zapatas + anchors - Batista paid in full B/. 4,800',desc_es:'Zapatas + anclajes - Batista pagado en su totalidad B/. 4,800'},
-    {status:'done',date:'Jan 2026',desc:'Floor plan v15 design finalization',desc_es:'Finalización del diseño de plano v15'},
-    {status:'done',date:'Mar 2026',desc:'v15 LOCKED - 3 new doors confirmed',desc_es:'v15 BLOQUEADO - 3 nuevas puertas confirmadas'},
-    {status:'active',date:'Mar 2026',desc:'Rear patio roof demo + rebuild - ACTIVE NOW',desc_es:'Demo + reconstrucción de techo trasero - EN PROGRESO'},
-    {status:'pending',date:'Apr 2026',desc:'All exterior work done before Azuero lluvia season',desc_es:'Todo el trabajo exterior terminado antes de la lluvia de Azuero'},
-    {status:'pending',date:'May 2026',desc:'Phase 2: Bedroom 3 wall - 3 doors - Demo - Loft raise',desc_es:'Fase 2: Pared Cuarto 3 - 3 puertas - Demolición - Elevación de loft'},
-    {status:'pending',date:'Dec 2026',desc:'Project substantial completion',desc_es:'Terminación sustancial del proyecto'}
+  "tasks": [
+    {
+      "pid": 1,
+      "name": "Floor plan finalization v15",
+      "status": "complete",
+      "cost": 0,
+      "paid": 0,
+      "who": "Owner",
+      "progress": 100,
+      "name_es": "Finalización de plano v15"
+    },
+    {
+      "pid": 1,
+      "name": "Contractor sourcing + quotes",
+      "status": "complete",
+      "cost": 0,
+      "paid": 0,
+      "who": "Superintendent",
+      "progress": 100,
+      "name_es": "Búsqueda de contratistas + cotizaciones"
+    },
+    {
+      "pid": 1,
+      "name": "Structural engineer assessment",
+      "status": "complete",
+      "cost": 0,
+      "paid": 0,
+      "who": "Engineer",
+      "progress": 100,
+      "name_es": "Evaluación de ingeniero estructural"
+    },
+    {
+      "pid": 2,
+      "name": "House roof repairs + colonial tile + gutters",
+      "status": "complete",
+      "cost": 1500,
+      "paid": 1500,
+      "who": "??",
+      "progress": 100,
+      "name_es": "House roof repairs + colonial tile + gutters"
+    },
+    {
+      "pid": 3,
+      "name": "Terazza roof raise & rebuild. + laundry & bathroom roof raised",
+      "status": "active",
+      "cost": 4800,
+      "paid": 4800,
+      "who": "Milton",
+      "progress": 47,
+      "name_es": "Terazza roof raise & rebuild. + laundry & bathroom roof raised"
+    },
+    {
+      "pid": 3,
+      "name": "House roof repairs + colonial tile + gutters",
+      "status": "complete",
+      "cost": 1500,
+      "paid": 1500,
+      "who": "??",
+      "progress": 100,
+      "name_es": "House roof repairs + colonial tile + gutters"
+    },
+    {
+      "pid": 3,
+      "name": "Build bedroom #3",
+      "status": "pending",
+      "cost": 1500,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Build bedroom #3"
+    },
+    {
+      "pid": 3,
+      "name": "Drainage & waterproofing - alley + terraza wall",
+      "status": "pending",
+      "cost": 1200,
+      "paid": 0,
+      "who": "TBD",
+      "progress": 0,
+      "name_es": "Drainage & waterproofing - alley + terraza wall"
+    },
+    {
+      "pid": 4,
+      "name": "Install new 1st floor windows ",
+      "status": "pending",
+      "cost": 800,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Install new 1st floor windows "
+    },
+    {
+      "pid": 4,
+      "name": "Install new 2nd floor windows ",
+      "status": "pending",
+      "cost": 800,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Install new 2nd floor windows "
+    },
+    {
+      "pid": 4,
+      "name": "Install structural post kitchen wall",
+      "status": "pending",
+      "cost": 1500,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Install structural post kitchen wall"
+    },
+    {
+      "pid": 4,
+      "name": "Raise loft to 9 ft",
+      "status": "pending",
+      "cost": 2000,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Raise loft to 9 ft"
+    },
+    {
+      "pid": 4,
+      "name": "Demo kitchen wall ",
+      "status": "pending",
+      "cost": 200,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Demo kitchen wall "
+    },
+    {
+      "pid": 4,
+      "name": "Demo kitchen ceiling + 2nd floor slab",
+      "status": "pending",
+      "cost": 300,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Demoler cielo raso de cocina + losa de 2do piso"
+    },
+    {
+      "pid": 4,
+      "name": "Remove existing staircase",
+      "status": "pending",
+      "cost": 200,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Demolición de escalera existente"
+    },
+    {
+      "pid": 5,
+      "name": "build bedrooms #1 & #2",
+      "status": "pending",
+      "cost": 2000,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "build bedrooms #1 & #2"
+    },
+    {
+      "pid": 5,
+      "name": "Build closets - bedroom #1 & #2",
+      "status": "pending",
+      "cost": 600,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Build closets - bedroom #1 & #2"
+    },
+    {
+      "pid": 5,
+      "name": "New floor tiles throughout",
+      "status": "pending",
+      "cost": 2500,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Nuevo piso de cerámica en toda la casa"
+    },
+    {
+      "pid": 5,
+      "name": "Kitchen cabinets + countertops",
+      "status": "pending",
+      "cost": 2500,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Gabinetes de cocina + encimeras"
+    },
+    {
+      "pid": 5,
+      "name": "Bathroom interior remodel + fixtures",
+      "status": "pending",
+      "cost": 2500,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Remodelación interior de baño + accesorios"
+    },
+    {
+      "pid": 5,
+      "name": "Burglar Bars - all windows",
+      "status": "pending",
+      "cost": 1000,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Burglar Bars - all windows"
+    },
+    {
+      "pid": 5,
+      "name": "Kitchen to terraza step-down fix",
+      "status": "pending",
+      "cost": 400,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Corrección de desnivel cocina-terraza"
+    },
+    {
+      "pid": 6,
+      "name": "Bathroom remodel & windows ",
+      "status": "pending",
+      "cost": 600,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Bathroom remodel & windows "
+    },
+    {
+      "pid": 6,
+      "name": "laundryroom remodel & windows",
+      "status": "pending",
+      "cost": 800,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "laundryroom remodel & windows"
+    },
+    {
+      "pid": 6,
+      "name": "Septic relocation - MINSA approval required",
+      "status": "pending",
+      "cost": 2500,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Reubicación de fosa séptica - requiere aprobación MINSA"
+    },
+    {
+      "pid": 6,
+      "name": "Courtyard layout + landscaping",
+      "status": "pending",
+      "cost": 1200,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Diseño de patio + jardinería"
+    },
+    {
+      "pid": 6,
+      "name": "Backup water tank assessment",
+      "status": "pending",
+      "cost": 300,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Evaluación de tanque de agua de reserva"
+    },
+    {
+      "pid": 7,
+      "name": "Repair / remodel deposito",
+      "status": "pending",
+      "cost": 1500,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Reparación / remodelación del depósito"
+    },
+    {
+      "pid": 7,
+      "name": "Remodel Mama Zoila house",
+      "status": "pending",
+      "cost": 4000,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Remodelación casa Mamá Zoila"
+    },
+    {
+      "pid": 7,
+      "name": "Canasa property assessment",
+      "status": "pending",
+      "cost": 500,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Evaluación de propiedad Canasa"
+    },
+    {
+      "pid": 5,
+      "name": "Front steps + rampa accesibilidad Ley 42",
+      "status": "pending",
+      "cost": 1000,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Gradas frontales + rampa de accesibilidad Ley 42"
+    },
+    {
+      "pid": 2,
+      "name": "House Structural - FOOTINGS & POST",
+      "status": "complete",
+      "cost": 4860,
+      "paid": 4860,
+      "who": "Eduardo",
+      "progress": 100,
+      "name_es": "House Structural - FOOTINGS & POST"
+    },
+    {
+      "pid": 2,
+      "name": "Windows - house front (2)",
+      "status": "complete",
+      "cost": 500,
+      "paid": 0,
+      "who": "",
+      "progress": 100,
+      "name_es": "Windows - house front (2)"
+    },
+    {
+      "pid": 2,
+      "name": "Front Porch fill in",
+      "status": "complete",
+      "cost": 500,
+      "paid": 500,
+      "who": "",
+      "progress": 100,
+      "name_es": "Front Porch fill in"
+    },
+    {
+      "pid": 3,
+      "name": "crack repair exterior walls",
+      "status": "pending",
+      "cost": 1500,
+      "paid": 0,
+      "who": "??",
+      "progress": 0,
+      "name_es": "crack repair exterior walls"
+    },
+    {
+      "pid": 5,
+      "name": "Electrical - rewire house",
+      "status": "pending",
+      "cost": 1000,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Electrical - rewire house"
+    },
+    {
+      "pid": 5,
+      "name": "Plumbing upgrades",
+      "status": "pending",
+      "cost": 1000,
+      "paid": 0,
+      "who": "",
+      "progress": 0,
+      "name_es": "Plumbing upgrades"
+    }
   ],
-  wfLabels:['Total Budget','Paid to Date','Outstanding','Future Superintendent','Contingency'],
-  wfLabels_es:['Presupuesto Total','Pagado a la Fecha','Pendiente de Cobro','Superintendente Futuro','Contingencia'],
-  wfKeys:['TotalBudget','PaidToDate','Outstanding','FutureSup','Contingency'],
-  wfColors:['#00695C','#B85042','#E65100','#7B6654','#6A1B9A'],
-  nextsteps:[
-    {cat:'URGENT NOW',cat_es:'URGENTE AHORA',color:'#C62828',bg:'#FFEBEE',border:'#C62828',items:[
-      {title:'Redirect AC drain',title_es:'Redirigir drenaje del AC',desc:'Rubber extension away from crack repair zone - approx B/. 5',desc_es:'Extensión de caucho alejada de la zona reparada - aprox. B/. 5',timing:'This week',timing_es:'Esta semana'},
-      {title:'Eduardo 70% payments',title_es:'Pagos al 70% a Eduardo',desc:'B/. 1,860 INV-001 + B/. 500 INV-002 at milestone',desc_es:'B/. 1,860 INV-001 + B/. 500 INV-002 al alcanzar el hito',timing:'When triggered',timing_es:'Al alcanzar hito'},
-      {title:'Complete exterior waterproofing',title_es:'Terminar impermeabilización exterior',desc:'Azuero lluvia May. Semana Santa April = labor pause',desc_es:'Lluvia de Azuero mayo. Semana Santa abril = paro laboral',timing:'Before Apr 2026',timing_es:'Antes de abr 2026'}
-    ]},
-    {cat:'THIS MONTH',cat_es:'ESTE MES',color:'#E65100',bg:'#FFF8E1',border:'#E65100',items:[
-      {title:'Colonial tile quotes',title_es:'Cotizaciones de teja colonial',desc:'Chitre / La Palma suppliers - match existing roof tile',desc_es:'Proveedores en Chitré / La Palma - igualar teja existente',timing:'Mar 2026',timing_es:'Mar 2026'},
-      {title:'Structural engineer sign-off',title_es:'Aprobación de ingeniero estructural',desc:'2nd floor beam sizing before Phase 2 begins',desc_es:'Dimensionamiento de vigas de 2do piso antes de iniciar Fase 2',timing:'Mar 2026',timing_es:'Mar 2026'},
-      {title:'Permisos de construccion',title_es:'Permisos de construcción',desc:'MIVIOT + MOP Panama - file before Phase 2 demo',desc_es:'MIVIOT + MOP Panamá - tramitar antes de demo de Fase 2',timing:'Mar-Apr 2026',timing_es:'Mar-Abr 2026'}
-    ]},
-    {cat:'PLANNING',cat_es:'PLANIFICACIÓN',color:'#00695C',bg:'#E0F2F1',border:'#00695C',items:[
-      {title:'Loft railing + staircase design',title_es:'Diseño de baranda del loft + escalera',desc:'Structural review before Phase 2 begins in May',desc_es:'Revisión estructural antes de iniciar Fase 2 en mayo',timing:'Apr-May 2026',timing_es:'Abr-May 2026'},
-      {title:'Bed3 west wall + 3 doors',title_es:'Pared oeste Cuarto 3 + 3 puertas',desc:'Source materials Chitre / Santiago de Veraguas',desc_es:'Conseguir materiales en Chitré / Santiago de Veraguas',timing:'May 2026',timing_es:'May 2026'},
-      {title:'MINSA septic assessment',title_es:'Evaluación séptica MINSA',desc:'Required before Phase 4 septic relocation work',desc_es:'Requerida antes del trabajo de reubicación séptica Fase 4',timing:'Jun 2026',timing_es:'Jun 2026'}
-    ]}
+  "milestones": [
+    {
+      "status": "done",
+      "date": "Oct 2025",
+      "desc": "Structural assessments - no major damage found",
+      "desc_es": "Evaluaciones estructurales - sin daños mayores"
+    },
+    {
+      "status": "done",
+      "date": "Nov 2025",
+      "desc": "Zapatas + anchors - Batista paid in full B/. 4,800",
+      "desc_es": "Zapatas + anclajes - Batista pagado en su totalidad B/. 4,800"
+    },
+    {
+      "status": "done",
+      "date": "Jan 2026",
+      "desc": "Floor plan v15 design finalization",
+      "desc_es": "Finalización del diseño de plano v15"
+    },
+    {
+      "status": "done",
+      "date": "Mar 2026",
+      "desc": "v15 LOCKED - 3 new doors confirmed",
+      "desc_es": "v15 BLOQUEADO - 3 nuevas puertas confirmadas"
+    },
+    {
+      "status": "active",
+      "date": "Mar 2026",
+      "desc": "Rear patio roof demo + rebuild - ACTIVE NOW",
+      "desc_es": "Demo + reconstrucción de techo trasero - EN PROGRESO"
+    },
+    {
+      "status": "pending",
+      "date": "Apr 2026",
+      "desc": "All exterior work done before Azuero lluvia season",
+      "desc_es": "Todo el trabajo exterior terminado antes de la lluvia de Azuero"
+    },
+    {
+      "status": "pending",
+      "date": "May 2026",
+      "desc": "Phase 2: Bedroom 3 wall - 3 doors - Demo - Loft raise",
+      "desc_es": "Fase 2: Pared Cuarto 3 - 3 puertas - Demolición - Elevación de loft"
+    },
+    {
+      "status": "pending",
+      "date": "Dec 2026",
+      "desc": "Project substantial completion",
+      "desc_es": "Terminación sustancial del proyecto"
+    }
   ],
-  doors:[
-    {color:'#B85042',title:'Door A - Bathroom South Wall',title_es:'Puerta A - Pared Sur del Baño',desc:'Centered - 3ft wide - swings north into bathroom',desc_es:'Centrada - 3 pies de ancho - abre hacia el norte'},
-    {color:'#C9974A',title:'Door B - Bedroom 3 West Wall',title_es:'Puerta B - Pared Oeste Cuarto 3',desc:'Just south of closet - 3ft wide - swings east into Bed3',desc_es:'Al sur del closet - 3 pies de ancho - abre hacia el este'},
-    {color:'#6A1B9A',title:'Door C - Lavanderia West Wall',title_es:'Puerta C - Pared Oeste Lavandería',desc:'From courtyard - 3ft wide - swings east into laundry',desc_es:'Desde el patio - 3 pies de ancho - abre hacia el este'}
+  "wfLabels": [
+    "Total Budget",
+    "Paid to Date",
+    "Outstanding",
+    "Future Superintendent",
+    "Contingency"
   ],
-  holidays:[
-    {icon:'🌧',title:'Azuero lluvia season',title_es:'Temporada de lluvia de Azuero',desc:'Begins May 2026 - ALL exterior work must complete before this',desc_es:'Inicia mayo 2026 - TODO el trabajo exterior debe terminar antes'},
-    {icon:'✝',title:'Semana Santa Holy Week',title_es:'Semana Santa',desc:'April 2026 - full labor pause - coordinate with Eduardo now',desc_es:'Abril 2026 - paro total de obra - coordinar con Eduardo ya'},
-    {icon:'🎉',title:'Carnaval',title_es:'Carnaval',desc:'Feb/Mar 2026 - Los Santos major celebration - reduced workers',desc_es:'Feb/Mar 2026 - festividades principales en Los Santos - menos trabajadores'},
-    {icon:'🏛',title:'November holidays cluster',title_es:'Feriados de noviembre',desc:'Nov 1-28 multiple national holidays - plan phases accordingly',desc_es:'Nov 1-28 múltiples feriados nacionales - planificar fases en consecuencia'}
+  "wfKeys": [
+    "TotalBudget",
+    "PaidToDate",
+    "Outstanding",
+    "FutureSup",
+    "Contingency"
   ],
-  regNotes:[
-    {title:'Currency',title_es:'Moneda',desc:'Balboa B/. = USD 1:1 - No exchange risk',desc_es:'Balboa B/. = USD 1:1 - Sin riesgo cambiario'},
-    {title:'Permits',title_es:'Permisos',desc:'MIVIOT + MOP - File before Phase 2 demolition',desc_es:'MIVIOT + MOP - Tramitar antes de demolición Fase 2'},
-    {title:'Septic',title_es:'Séptico',desc:'MINSA Ingenieria Sanitaria approval required',desc_es:'Se requiere aprobación de MINSA Ingeniería Sanitaria'},
-    {title:'Accessibility',title_es:'Accesibilidad',desc:'Ley 42 de 1999 - Accessibility ramp required',desc_es:'Ley 42 de 1999 - Se requiere rampa de accesibilidad'},
-    {title:'Timber',title_es:'Madera',desc:'Teca + Roble - source from Chitre / Azuero',desc_es:'Teca + Roble - conseguir en Chitré / Azuero'},
-    {title:'Tiles',title_es:'Cerámica',desc:'Order from Chitre before May rainy season',desc_es:'Pedir en Chitré antes de la temporada de lluvias en mayo'},
-    {title:'Labor Law',title_es:'Derecho Laboral',desc:'Codigo de Trabajo Panama Decreto Ley No. 5 de 2015',desc_es:'Código de Trabajo Panamá Decreto Ley No. 5 de 2015'},
-    {title:'Construction',title_es:'Construcción',desc:'Mamposteria concrete block - standard in Los Santos',desc_es:'Mampostería de bloque de concreto - estándar en Los Santos'}
+  "wfColors": [
+    "#00695C",
+    "#B85042",
+    "#E65100",
+    "#7B6654",
+    "#6A1B9A"
   ],
-  rooms:[
-    {zone:'House N',zone_es:'Casa Norte',name:'Bedroom 1',name_es:'Habitación 1',depth:'11.81ft',width:'12.14ft',sqft:'143.4',status:'Existing',status_es:'Existente'},
-    {zone:'House N',zone_es:'Casa Norte',name:'Closet 1',name_es:'Closet 1',depth:'2.23ft',width:'12.14ft',sqft:'27.1',status:'Renovation',status_es:'Remodelación'},
-    {zone:'House N',zone_es:'Casa Norte',name:'Closet 2',name_es:'Closet 2',depth:'2.23ft',width:'12.14ft',sqft:'27.1',status:'Renovation',status_es:'Remodelación'},
-    {zone:'House N',zone_es:'Casa Norte',name:'Bedroom 2',name_es:'Habitación 2',depth:'13.35ft',width:'12.14ft',sqft:'162.1',status:'Renovation',status_es:'Remodelación'},
-    {zone:'House S',zone_es:'Casa Sur',name:'Living Room',name_es:'Sala',depth:'16.17ft',width:'11.54ft',sqft:'186.6',status:'Existing',status_es:'Existente'},
-    {zone:'House S',zone_es:'Casa Sur',name:'Kitchen',name_es:'Cocina',depth:'13.45ft',width:'11.54ft',sqft:'155.2',status:'Existing',status_es:'Existente'},
-    {zone:'Exterior',zone_es:'Exterior',name:'Front Porch',name_es:'Portal Frontal',depth:'4ft 6in',width:'23.68ft',sqft:'106.6',status:'Existing',status_es:'Existente'},
-    {zone:'Terraza N',zone_es:'Terraza Norte',name:'Bathroom LOCKED',name_es:'Baño BLOQUEADO',depth:'9ft 0in',width:'9ft 3in',sqft:'83.3',status:'Locked',status_es:'Bloqueado'},
-    {zone:'Terraza N',zone_es:'Terraza Norte',name:'Yard / Courtyard LOCKED',name_es:'Patio / Jardín BLOQUEADO',depth:'21.8ft',width:'9ft 3in',sqft:'201.7',status:'Locked',status_es:'Bloqueado'},
-    {zone:'Terraza N',zone_es:'Terraza Norte',name:'Lavanderia LOCKED',name_es:'Lavandería BLOQUEADA',depth:'12ft 0in',width:'9ft 3in',sqft:'111.0',status:'Locked',status_es:'Bloqueado'},
-    {zone:'Terraza S',zone_es:'Terraza Sur',name:'Open Terraza',name_es:'Terraza Abierta',depth:'31ft 10in',width:'14ft 7in',sqft:'464.5',status:'Active',status_es:'Activo'},
-    {zone:'Terraza S',zone_es:'Terraza Sur',name:'Bedroom 3 NEW',name_es:'Cuarto 3 NUEVO',depth:'10ft 10in',width:'14ft 7in',sqft:'158.2',status:'New',status_es:'Nuevo'}
+  "nextsteps": [
+    {
+      "cat": "URGENT NOW",
+      "color": "#C62828",
+      "bg": "#FFEBEE",
+      "border": "#C62828",
+      "items": [
+        {
+          "title": "Finish Terraza roof.",
+          "desc": "includes laundry & bathroom roof ",
+          "timing": "This week",
+          "title_es": "Finish Terraza roof.",
+          "desc_es": "includes laundry & bathroom roof ",
+          "timing_es": "This week"
+        },
+        {
+          "title": "Seal 2nd floor middle window",
+          "desc": "included in terraza bid cost",
+          "timing": "install windows upstairs & downstairs",
+          "title_es": "Seal 2nd floor middle window",
+          "desc_es": "included in terraza bid cost",
+          "timing_es": "install windows upstairs & downstairs"
+        },
+        {
+          "title": "Complete ",
+          "desc": "Azuero lluvia May. Semana Santa April = labor pause",
+          "timing": "Before Apr 2026",
+          "title_es": "Complete ",
+          "desc_es": "Azuero lluvia May. Semana Santa April = labor pause",
+          "timing_es": "Before Apr 2026"
+        },
+        {
+          "title": "Seal 2nd floor middle window",
+          "desc": "Add description here",
+          "timing": "This week",
+          "title_es": "Seal 2nd floor middle window",
+          "desc_es": "Add description here",
+          "timing_es": "This week"
+        }
+      ],
+      "cat_es": "URGENTE AHORA"
+    },
+    {
+      "cat": "THIS MONTH",
+      "color": "#E65100",
+      "bg": "#FFF8E1",
+      "border": "#E65100",
+      "items": [
+        {
+          "title": "Bedroom #3 build",
+          "desc": " La Palma ",
+          "timing": "Mar 2026",
+          "title_es": "Bedroom #3 build",
+          "desc_es": " La Palma ",
+          "timing_es": "Mar 2026"
+        },
+        {
+          "title": "install windows upstairs & downstairs",
+          "desc": "2nd floor beam sizing before Phase 2 begins",
+          "timing": "Mar 2026",
+          "title_es": "install windows upstairs & downstairs",
+          "desc_es": "2nd floor beam sizing before Phase 2 begins",
+          "timing_es": "Mar 2026"
+        },
+        {
+          "title": "TBD",
+          "desc": "Add description here",
+          "timing": "TBD",
+          "title_es": "TBD",
+          "desc_es": "Add description here",
+          "timing_es": "TBD"
+        }
+      ],
+      "cat_es": "ESTE MES"
+    },
+    {
+      "cat": "PLANNING",
+      "color": "#00695C",
+      "bg": "#E0F2F1",
+      "border": "#00695C",
+      "items": [
+        {
+          "title": "install windows upstairs & downstairs",
+          "desc": "Structural review before Phase 2 begins in May",
+          "timing": "Apr-May 2026",
+          "title_es": "install windows upstairs & downstairs",
+          "desc_es": "Structural review before Phase 2 begins in May",
+          "timing_es": "Apr-May 2026"
+        },
+        {
+          "title": "raise 2nd floor 9 feet",
+          "desc": "Source materials Chitre / Santiago de Veraguas",
+          "timing": "April 2026",
+          "title_es": "raise 2nd floor 9 feet",
+          "desc_es": "Source materials Chitre / Santiago de Veraguas",
+          "timing_es": "April 2026"
+        },
+        {
+          "title": "TBD",
+          "desc": "TBD",
+          "timing": "Jun 2026",
+          "title_es": "TBD",
+          "desc_es": "TBD",
+          "timing_es": "Jun 2026"
+        },
+        {
+          "title": "New item - click to edit",
+          "desc": "Add description here",
+          "timing": "TBD",
+          "title_es": "New item - click to edit",
+          "desc_es": "Add description here",
+          "timing_es": "TBD"
+        }
+      ],
+      "cat_es": "PLANIFICACIÓN"
+    }
   ],
-  rtotals:{house:'701',terraza:'1,019',porch:'107',grand:'1,827'},
-  tnote:'TERRAZA LOCKED: All terraza dimensions are existing installed - zero renovation required on these elements.',
-  tnote_es:'TERRAZA BLOQUEADA: Todas las dimensiones de la terraza están instaladas - no se requiere remodelación en estos elementos.',
-  cp:'All Phase 1 structural, roof and waterproofing work MUST complete before Azuero rainy season - May 2026.\n- Semana Santa April 2026 = full labor pause. Coordinate with Eduardo now.\n- Supply chain: Order colonial tiles, Teca/Roble from Chitre before May.\n- Permisos: MIVIOT + MOP applications filed before Phase 2 demolition begins.\n- MINSA approval required before any septic tank relocation work - Phase 4.',
-  cp_es:'Todo el trabajo estructural, de techo e impermeabilización de la Fase 1 DEBE completarse antes de la temporada de lluvias de Azuero - mayo 2026.\n- Semana Santa abril 2026 = paro total de obra. Coordinar con Eduardo ya.\n- Cadena de suministro: Pedir tejas coloniales, Teca/Roble en Chitré antes de mayo.\n- Permisos: Solicitudes MIVIOT + MOP antes de demolición Fase 2.\n- Aprobación MINSA requerida antes de cualquier reubicación de fosa séptica - Fase 4.'
+  "doors": [
+    {
+      "color": "#B85042",
+      "title": "Door A - Bathroom South Wall",
+      "desc": "Centered - 3ft wide - swings north into bathroom",
+      "title_es": "Puerta A - Pared Sur del Baño",
+      "desc_es": "Centrada - 3 pies de ancho - abre hacia el norte"
+    },
+    {
+      "color": "#C9974A",
+      "title": "Door B - Bedroom 3 West Wall",
+      "desc": "Just south of closet - 3ft wide - swings east into Bed3",
+      "title_es": "Puerta B - Pared Oeste Cuarto 3",
+      "desc_es": "Al sur del closet - 3 pies de ancho - abre hacia el este"
+    },
+    {
+      "color": "#6A1B9A",
+      "title": "Door C - Lavanderia West Wall",
+      "desc": "From courtyard - 3ft wide - swings east into laundry",
+      "title_es": "Puerta C - Pared Oeste Lavandería",
+      "desc_es": "Desde el patio - 3 pies de ancho - abre hacia el este"
+    }
+  ],
+  "holidays": [
+    {
+      "icon": "&#127783;",
+      "title": "Azuero lluvia season",
+      "desc": "Begins May 2026 - ALL exterior work must complete before this",
+      "title_es": "Temporada de lluvia de Azuero",
+      "desc_es": "Inicia mayo 2026 - TODO el trabajo exterior debe terminar antes"
+    },
+    {
+      "icon": "&#9784;",
+      "title": "Semana Santa Holy Week",
+      "desc": "April 2026 - full labor pause - coordinate with Eduardo now",
+      "title_es": "Semana Santa",
+      "desc_es": "Abril 2026 - paro total de obra - coordinar con Eduardo ya"
+    },
+    {
+      "icon": "&#127881;",
+      "title": "Carnaval",
+      "desc": "Feb/Mar 2026 - Los Santos major celebration - reduced workers",
+      "title_es": "Carnaval",
+      "desc_es": "Feb/Mar 2026 - festividades principales en Los Santos - menos trabajadores"
+    },
+    {
+      "icon": "&#127963;",
+      "title": "November holidays cluster",
+      "desc": "Nov 1-28 multiple national holidays - plan phases accordingly",
+      "title_es": "Feriados de noviembre",
+      "desc_es": "Nov 1-28 múltiples feriados nacionales - planificar fases en consecuencia"
+    }
+  ],
+  "regNotes": [
+    {
+      "title": "Currency",
+      "desc": "Balboa B/. = USD 1:1 - No exchange risk",
+      "title_es": "Moneda",
+      "desc_es": "Balboa B/. = USD 1:1 - Sin riesgo cambiario"
+    },
+    {
+      "title": "Permits",
+      "desc": "MIVIOT + MOP - File before Phase 2 demolition",
+      "title_es": "Permisos",
+      "desc_es": "MIVIOT + MOP - Tramitar antes de demolición Fase 2"
+    },
+    {
+      "title": "Septic",
+      "desc": "MINSA Ingenieria Sanitaria approval required",
+      "title_es": "Séptico",
+      "desc_es": "Se requiere aprobación de MINSA Ingeniería Sanitaria"
+    },
+    {
+      "title": "Accessibility",
+      "desc": "Ley 42 de 1999 - Accessibility ramp required",
+      "title_es": "Accesibilidad",
+      "desc_es": "Ley 42 de 1999 - Se requiere rampa de accesibilidad"
+    },
+    {
+      "title": "Timber",
+      "desc": "Teca + Roble - source from Chitre / Azuero",
+      "title_es": "Madera",
+      "desc_es": "Teca + Roble - conseguir en Chitré / Azuero"
+    },
+    {
+      "title": "Tiles",
+      "desc": "Order from Chitre before May rainy season",
+      "title_es": "Cerámica",
+      "desc_es": "Pedir en Chitré antes de la temporada de lluvias en mayo"
+    },
+    {
+      "title": "Labor Law",
+      "desc": "Codigo de Trabajo Panama Decreto Ley No. 5 de 2015",
+      "title_es": "Derecho Laboral",
+      "desc_es": "Código de Trabajo Panamá Decreto Ley No. 5 de 2015"
+    },
+    {
+      "title": "Construction",
+      "desc": "Mamposteria concrete block - standard in Los Santos",
+      "title_es": "Construcción",
+      "desc_es": "Mampostería de bloque de concreto - estándar en Los Santos"
+    }
+  ],
+  "rooms": [
+    {
+      "zone": "House N",
+      "name": "Bedroom 1",
+      "depth": "11.81ft",
+      "width": "12.14ft",
+      "sqft": "143.4",
+      "status": "Existing",
+      "zone_es": "Casa Norte",
+      "name_es": "Habitación 1",
+      "status_es": "Existente"
+    },
+    {
+      "zone": "House N",
+      "name": "Closet 1",
+      "depth": "2.23ft",
+      "width": "12.14ft",
+      "sqft": "27.1",
+      "status": "Renovation",
+      "zone_es": "Casa Norte",
+      "name_es": "Closet 1",
+      "status_es": "Remodelación"
+    },
+    {
+      "zone": "House N",
+      "name": "Closet 2",
+      "depth": "2.23ft",
+      "width": "12.14ft",
+      "sqft": "27.1",
+      "status": "Renovation",
+      "zone_es": "Casa Norte",
+      "name_es": "Closet 2",
+      "status_es": "Remodelación"
+    },
+    {
+      "zone": "House N",
+      "name": "Bedroom 2",
+      "depth": "13.35ft",
+      "width": "12.14ft",
+      "sqft": "162.1",
+      "status": "Renovation",
+      "zone_es": "Casa Norte",
+      "name_es": "Habitación 2",
+      "status_es": "Remodelación"
+    },
+    {
+      "zone": "House S",
+      "name": "Living Room",
+      "depth": "16.17ft",
+      "width": "11.54ft",
+      "sqft": "186.6",
+      "status": "Existing",
+      "zone_es": "Casa Sur",
+      "name_es": "Sala",
+      "status_es": "Existente"
+    },
+    {
+      "zone": "House S",
+      "name": "Kitchen",
+      "depth": "13.45ft",
+      "width": "11.54ft",
+      "sqft": "155.2",
+      "status": "Existing",
+      "zone_es": "Casa Sur",
+      "name_es": "Cocina",
+      "status_es": "Existente"
+    },
+    {
+      "zone": "Exterior",
+      "name": "Front Porch",
+      "depth": "4ft 6in",
+      "width": "23.68ft",
+      "sqft": "106.6",
+      "status": "Existing",
+      "zone_es": "Exterior",
+      "name_es": "Portal Frontal",
+      "status_es": "Existente"
+    },
+    {
+      "zone": "Terraza N",
+      "name": "Bathroom LOCKED",
+      "depth": "9ft 0in",
+      "width": "9ft 3in",
+      "sqft": "83.3",
+      "status": "Locked",
+      "zone_es": "Terraza Norte",
+      "name_es": "Baño BLOQUEADO",
+      "status_es": "Bloqueado"
+    },
+    {
+      "zone": "Terraza N",
+      "name": "Yard / Courtyard LOCKED",
+      "depth": "21.8ft",
+      "width": "9ft 3in",
+      "sqft": "201.7",
+      "status": "Locked",
+      "zone_es": "Terraza Norte",
+      "name_es": "Patio / Jardín BLOQUEADO",
+      "status_es": "Bloqueado"
+    },
+    {
+      "zone": "Terraza N",
+      "name": "Lavanderia LOCKED",
+      "depth": "12ft 0in",
+      "width": "9ft 3in",
+      "sqft": "111.0",
+      "status": "Locked",
+      "zone_es": "Terraza Norte",
+      "name_es": "Lavandería BLOQUEADA",
+      "status_es": "Bloqueado"
+    },
+    {
+      "zone": "Terraza S",
+      "name": "Open Terraza",
+      "depth": "31ft 10in",
+      "width": "14ft 7in",
+      "sqft": "464.5",
+      "status": "Active",
+      "zone_es": "Terraza Sur",
+      "name_es": "Terraza Abierta",
+      "status_es": "Activo"
+    },
+    {
+      "zone": "Terraza S",
+      "name": "Bedroom 3 NEW",
+      "depth": "10ft 10in",
+      "width": "14ft 7in",
+      "sqft": "158.2",
+      "status": "New",
+      "zone_es": "Terraza Sur",
+      "name_es": "Cuarto 3 NUEVO",
+      "status_es": "Nuevo"
+    }
+  ],
+  "rtotals": {
+    "house": "701",
+    "terraza": "1,019",
+    "porch": "107",
+    "grand": "1,827"
+  },
+  "tnote": "TERRAZA LOCKED: All terraza dimensions are existing installed - zero renovation required on these elements.",
+  "cp": "All Phase 1 structural, roof and waterproofing work MUST complete before Azuero rainy season - May 2026.\n- Semana Santa April 2026 = full labor pause. \n- MINSA approval required before any septic tank relocation work - Phase 4.",
+  "cfgL_es": {
+    "TotalBudget": "Presupuesto Total",
+    "PaidToDate": "Pagado a la Fecha",
+    "Outstanding": "Monto Pendiente",
+    "FutureSup": "Superintendente Futuro",
+    "Contingency": "Reserva de Contingencia",
+    "NetConstruction": "Neto para Construcción"
+  },
+  "wfLabels_es": [
+    "Presupuesto Total",
+    "Pagado a la Fecha",
+    "Pendiente de Cobro",
+    "Superintendente Futuro",
+    "Contingencia"
+  ],
+  "tnote_es": "TERRAZA BLOQUEADA: Todas las dimensiones de la terraza están instaladas - no se requiere remodelación en estos elementos.",
+  "cp_es": "Todo el trabajo estructural, de techo e impermeabilización de la Fase 1 DEBE completarse antes de la temporada de lluvias de Azuero - mayo 2026.\n- Semana Santa abril 2026 = paro total de obra. Coordinar con Eduardo ya.\n- Cadena de suministro: Pedir tejas coloniales, Teca/Roble en Chitré antes de mayo.\n- Permisos: Solicitudes MIVIOT + MOP antes de demolición Fase 2.\n- Aprobación MINSA requerida antes de cualquier reubicación de fosa séptica - Fase 4."
 };
 
 /* ═══════════════════════════════════════════════════════
@@ -681,8 +1573,7 @@ function RNS(){
 /* ═══════════════════════════════════════════════════════
    INIT
 ═══════════════════════════════════════════════════════ */
-document.getElementById('last-updated').textContent=
-  (new Date()).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+document.getElementById('last-updated').textContent='Updated: Mar 9, 2026'; //.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
 
 window.addEventListener('DOMContentLoaded',function(){RA();});
 </script>
