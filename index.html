@@ -116,6 +116,17 @@ var _DOCS = [{"data": "data:application/vnd.openxmlformats-officedocument.spread
 function viewDoc(i) {
   var d = _DOCS[i];
   if (!d || !d.data) return;
+  var name = (d.name || '').toLowerCase();
+  var ext  = name.split('.').pop();
+  var noView = ['xlsx','xls','csv','doc','docx','pptx','ppt','zip'];
+  if (noView.indexOf(ext) >= 0) {
+    // Browser can't display this type — trigger download instead
+    var a = document.createElement('a');
+    a.href = d.data;
+    a.download = d.name;
+    a.click();
+    return;
+  }
   try {
     var mt  = d.data.split(';')[0].replace('data:','');
     var b64 = d.data.split(',')[1];
@@ -142,6 +153,23 @@ function ST(id, btn) {
   document.getElementById('tab-' + id).classList.add('active');
   if (btn) btn.classList.add('active');
 }
+
+// Update View button labels for non-browser-viewable files
+(function() {
+  var noView = ['xlsx','xls','csv','doc','docx','pptx','ppt','zip'];
+  document.querySelectorAll('[onclick^="viewDoc("]').forEach(function(btn) {
+    var i = parseInt(btn.getAttribute('onclick').replace('viewDoc(','').replace(')',''));
+    if (_DOCS[i]) {
+      var ext = (_DOCS[i].name || '').split('.').pop().toLowerCase();
+      if (noView.indexOf(ext) >= 0) {
+        btn.innerHTML = '⬇ Download';
+        btn.style.color = '#E65100';
+        btn.style.borderColor = '#FFCC80';
+        btn.title = 'Excel/Word files must be downloaded to open';
+      }
+    }
+  });
+})();
 
 var _lang = 'en';
 function setLang(btn) {
