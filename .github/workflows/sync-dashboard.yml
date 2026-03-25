@@ -1,0 +1,132 @@
+name: Sync Casa La Palma Dashboard
+
+on:
+  schedule:
+    # Runs every 6 hours automatically
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    # Also allows manual trigger from GitHub Actions tab
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Download latest JSON from Google Drive
+        run: |
+          python3 - <<'EOF'
+import requests
+import os
+
+# Google Drive file ID for CasaLaPalma JSON backup
+FILE_ID = "1em42hJywm5s41FTKtQahmoDwJgoXW5LN"
+
+# Try direct download URL
+url = f"https://drive.google.com/uc?export=download&id={FILE_ID}"
+session = requests.Session()
+response = session.get(url, allow_redirects=True)
+
+# Handle Google's virus scan warning for larger files
+if "confirm=" in response.text or "download_warning" in response.text:
+    import re
+    confirm = re.search(r'confirm=([0-9A-Za-z_]+)', response.text)
+    if confirm:
+        url = f"https://drive.google.com/uc?export=download&id={FILE_ID}&confirm={confirm.group(1)}"
+        response = session.get(url)
+
+# Save JSON
+with open("latest_data.json", "wb") as f:
+    f.write(response.content)
+
+# Validate it's real JSON
+import json
+with open("latest_data.json", "r") as f:
+    data = json.load(f)
+
+if not data.get("cfg") or not data.get("contractors"):
+    raise Exception("Downloaded file is not a valid Casa La Palma backup")
+
+print(f"✅ JSON downloaded: {len(data.get('contractors', []))} contractors, {len(data.get('phases', []))} phases, {len(data.get('tasks', []))} tasks")
+EOF
+
+      - name: Inject data into dashboard HTML
+        run: |
+          python3 - <<'EOF'
+import json
+import re
+import os
+
+# Load the downloaded JSON
+with open("latest_data.json", "r") as f:
+    data = json.load(f)
+
+# Load current index.html
+with open("index.html", "r", encoding="utf-8") as f:
+    html = f.read()
+
+compact = json.dumps(data, separators=(',', ':'))
+
+# Strategy 1: Replace existing BAKED variable (after first run)
+pattern1 = r'var BAKED=\{[\s\S]*?\};(\s*\n)var D;'
+if re.search(pattern1, html):
+    new_html = re.sub(pattern1, f'var BAKED={compact};\\1var D;', html)
+    print("✅ Strategy 1: Replaced existing BAKED variable")
+
+# Strategy 2: Original LD block (first run ever)
+elif "function LD(){try{var s=localStorage.getItem('lp6')" in html and "JSON.stringify(DEF)" in html:
+    old = "var D;\nfunction LD(){try{var s=localStorage.getItem('lp6');return s?JSON.parse(s):JSON.parse(JSON.stringify(DEF));}catch(e){return JSON.parse(JSON.stringify(DEF));}}\nD=LD();"
+    new = f"var BAKED={compact};\nvar D;\nfunction LD(){{try{{var s=localStorage.getItem('lp6');return s?JSON.parse(s):JSON.parse(JSON.stringify(BAKED));}}catch(e){{return JSON.parse(JSON.stringify(BAKED));}}}}\nD=LD();"
+    new_html = html.replace(old, new)
+    print("✅ Strategy 2: Injected BAKED into original LD block")
+
+# Strategy 3: Modified LD block (already has BAKED)
+elif "JSON.stringify(BAKED)" in html:
+    new_html = re.sub(r'var BAKED=\{[^;]+\};', f'var BAKED={compact};', html)
+    print("✅ Strategy 3: Updated existing BAKED one-liner")
+
+# Strategy 4: Fallback — inject before var D;
+elif "var D;" in html:
+    new_html = html.replace("var D;", f"var BAKED={compact};\nvar D;", 1)
+    print("✅ Strategy 4: Injected before var D;")
+
+else:
+    raise Exception("❌ Could not find injection point in HTML")
+
+# Write updated HTML
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(new_html)
+
+print(f"✅ Dashboard updated successfully")
+EOF
+
+      - name: Check if dashboard changed
+        id: check_changes
+        run: |
+          git diff --quiet index.html && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if changed
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "casalapalma-bot@rc2consulting.com"
+          git config --local user.name "Casa La Palma Auto-Sync"
+          git add index.html
+          git commit -m "Auto-sync dashboard data $(date +'%Y-%m-%d %H:%M UTC')"
+          git push
+          echo "✅ Dashboard pushed to GitHub Pages — foreman can see it live now"
+
+      - name: No changes detected
+        if: steps.check_changes.outputs.changed == 'false'
+        run: echo "ℹ️ No changes in JSON — dashboard already up to date"
