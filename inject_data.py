@@ -13,38 +13,34 @@ with open("index.html", "r", encoding="utf-8") as f:
 compact = json.dumps(data, separators=(',', ':'))
 injected = False
 
-# Strategy 1: Replace existing BAKED variable (multiline)
-pattern1 = r'var BAKED=\{[\s\S]*?\};(\s*\n)var D;'
-if re.search(pattern1, html):
-    html = re.sub(pattern1, 'var BAKED=' + compact + ';\\1var D;', html)
+# Strategy 1: Already has BAKED variable — just replace the value
+if "var BAKED=" in html:
+    html = re.sub(r'var BAKED=\{[\s\S]*?\};', 'var BAKED=' + compact + ';', html, count=1)
     print("Strategy 1: Replaced existing BAKED variable")
     injected = True
 
-# Strategy 2: Replace one-liner BAKED
-elif re.search(r'var BAKED=\{[^;]+\};', html):
-    html = re.sub(r'var BAKED=\{[^;]+\};', 'var BAKED=' + compact + ';', html)
-    print("Strategy 2: Replaced one-liner BAKED")
-    injected = True
-
-# Strategy 3: Original LD block with DEF
-elif "JSON.stringify(DEF)" in html and "function LD(){" in html:
+# Strategy 2: Original single-line LD block (matches actual GitHub file format)
+elif "var D;\nfunction LD(){" in html and "JSON.stringify(DEF)" in html:
     old = "var D;\nfunction LD(){try{var s=localStorage.getItem('lp6');return s?JSON.parse(s):JSON.parse(JSON.stringify(DEF));}catch(e){return JSON.parse(JSON.stringify(DEF));}}\nD=LD();"
     new = "var BAKED=" + compact + ";\nvar D;\nfunction LD(){try{var s=localStorage.getItem('lp6');return s?JSON.parse(s):JSON.parse(JSON.stringify(BAKED));}catch(e){return JSON.parse(JSON.stringify(BAKED));}}\nD=LD();"
     if old in html:
         html = html.replace(old, new)
-        print("Strategy 3: Injected into original LD block")
+        print("Strategy 2: Replaced original LD block")
         injected = True
 
-# Strategy 4: Already has BAKED in LD
-elif "JSON.stringify(BAKED)" in html and "var D;" in html:
-    html = re.sub(r'var BAKED=[^;]+;', 'var BAKED=' + compact + ';', html)
-    print("Strategy 4: Updated BAKED in modified LD block")
-    injected = True
+# Strategy 3: Find var D; and LD on same or adjacent lines using regex
+if not injected:
+    pattern = r'var D;\s*\nfunction LD\(\)\{[^\n]+\}\s*\nD=LD\(\);'
+    if re.search(pattern, html):
+        replacement = "var BAKED=" + compact + ";\nvar D;\nfunction LD(){try{var s=localStorage.getItem('lp6');return s?JSON.parse(s):JSON.parse(JSON.stringify(BAKED));}catch(e){return JSON.parse(JSON.stringify(BAKED));}}\nD=LD();"
+        html = re.sub(pattern, replacement, html, count=1)
+        print("Strategy 3: Replaced LD block via regex")
+        injected = True
 
-# Strategy 5: Fallback - inject before var D;
-elif "var D;" in html:
+# Strategy 4: Just find var D; and inject BAKED before it
+if not injected and "var D;" in html:
     html = html.replace("var D;", "var BAKED=" + compact + ";\nvar D;", 1)
-    print("Strategy 5: Injected before var D;")
+    print("Strategy 4: Injected BAKED before var D;")
     injected = True
 
 if not injected:
